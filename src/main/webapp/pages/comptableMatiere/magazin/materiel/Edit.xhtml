@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MaterielEditDlg"  header="Mise à jour" widgetVar="MaterielEditDialog" modal="true" resizable="false" appendToBody="true" showEffect="puff"    hideEffect="clip">
+
+            <h:form id="MaterielEditForm" > 
+                <h:panelGroup id="display" >
+                    <h:panelGrid rendered="#{mat.materiel != null}" columns="2" cellpadding="5">
+
+                        <p:outputLabel for="nom"  value="Matériel"/>
+                        <p:inputText id="nom" accesskey="enter"  value="#{mat.materiel.nomMateriel}"  />
+
+                        <p:outputLabel for="dateGarantie"  value="#{msg['iden_dateGarantie_materiel']}"/>
+                        <p:calendar id="dateGarantie"  value="#{mat.materiel.dateDebutGarantie}" required="true" pattern="dd/MM/yyyy" showOn="button"  style="width: 200px;" />
+
+                        <p:outputLabel for="nomF"  value="Fournisseur"/>
+                        <p:inputText id="nomF"  value="#{mat.materiel.nomFournisseur}" />
+
+                        <p:outputLabel for="duree"  value="Duree garantie"/>
+                        <p:inputText id="duree"   value="#{mat.materiel.dureeGarantie}" />
+
+                        <p:outputLabel for="marquee"  value="#{msg['iden_marquee_materiel']}"/>
+                        <p:inputText id="marquee" value="#{mat.materiel.marquee}" />
+
+                        <p:outputLabel for="serie"  value="#{msg['iden_serie_materiel']}"/>
+                        <p:inputText id="serie" value="#{mat.materiel.numSerie}" required="true" requiredMessage="#{msg['iden_nom_msg']}"/>
+
+                        <p:outputLabel for="type1"  value="#{msg['iden_type_materiel']}"/> 
+                        <p:selectOneMenu id="type1" value="#{mat.materiel.type}" style="width: 200px;">
+                            <f:selectItem itemLabel="Echangeable" itemValue="Echangeable"/>
+                            <f:selectItem itemLabel="Consommable" itemValue="Consommable"/>
+                            <f:selectItem itemLabel="Non echangeable" itemValue="Non echangeable"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="adresse"  value="#{msg['iden_adresse_materiel']}"/>
+                        <p:inputText id="adresse" value="#{mat.materiel.adresseIP}" />
+
+                        <p:outputLabel for="stock"  value="En stock"/>
+                        <p:selectOneMenu id="stock" value="#{mat.materiel.enStock}" style="width: 200px;">
+                            <f:selectItem itemLabel="Oui" itemValue="OUI"/>
+                            <f:selectItem itemLabel="Non" itemValue="NON"/>
+                        </p:selectOneMenu>
+
+                        
+                        <p:outputLabel for="date"  value="Date peremtion"/>
+                        <p:calendar id="date" value="#{mat.magazin.peremtion}"  pattern="yyyy-mm-dd" showButtonPanel="true" yearRange="c-10:c+10" navigator="true" locale="fr"  style="width: 200px;" />
+
+                        <p:outputLabel for="qte"  value="#{msg['iden_quantite_materiel']}"/>
+                        <p:inputText id="qte" value="#{mat.magazin.stock}" />
+                        
+                        <p:panel visible="false">
+                            <p:inputText id="id" value="#{mat.materiel.id}" />
+                        </p:panel>
+
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{mat.updateMateriel}" value="#{msg['iden_menu_enregistrer_label']}" update="display,:MaterielListForm:pTable,:growl" oncomplete="MaterielCreateDialog.hide();"/>
+                    <p:commandButton value="#{msg['iden_cancel']}" onclick="MaterielEditDialog.hide();"/>
+
+                </h:panelGroup>
+            </h:form>
+        </p:dialog> 
+    </ui:composition>
+
+</html>

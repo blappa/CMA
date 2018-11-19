@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonnelEditDlg" header="Mise à jour" widgetVar="PersonnelEditDialog" modal="true" resizable="false" appendToBody="true" showEffect="puff"    hideEffect="clip">
+
+            <h:form id="PersonnelEditForm" enctype="multipart/form-data">
+                <h:panelGroup id="display" >
+                    <h:panelGrid rendered="#{root.personnel != null}" columns="2" cellpadding="5">
+                        <p:outputLabel for="nom"  value="#{msg['iden_nom']}"/>
+                        <p:autoComplete id="nom" value="#{root.personnel.nom}" required="true" requiredMessage="#{msg['iden_nom_msg']}" />
+
+                        <p:outputLabel for="prenom"  value="#{msg['iden_prenom']}"/>
+                        <p:autoComplete id="prenom" value="#{root.personnel.prenom}" style="width: 200px;" />
+
+                        <p:outputLabel for="login"  value="#{msg['iden_login']}"/>
+                        <p:inputText id="login" value="#{root.username}" />
+
+                        <p:outputLabel for="cni"  value="#{msg['iden_cni']}"/>
+                        <p:autoComplete id="cni" value="#{root.personnel.cni}" required="true" requiredMessage="#{msg['iden_fonc_msg']}"   style="width: 200px;" />
+
+                        <p:outputLabel for="status"  value="#{msg['iden_specialite']}"/>
+                        <p:inputText id="status" value="#{root.personnel.specialite}" />
+
+                        <p:outputLabel for="service"  value="#{msg['iden_service']}"/>
+                        <p:selectOneMenu id="service"  value="#{root.sigleService}" style="width: 200px;" >
+                            <f:selectItems value="#{root.serviceList}" var="p" itemLabel="#{root.personnel.service.nomService}" itemValue="#{p.sigleService}"/>
+                           <!-- <f:selectItem itemLabel="#{msg['iden_default_value']}" itemValue="#{msg['iden_default_value']}"/> -->
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="mail"  value="#{msg['iden_mail']}"/>
+                        <p:inputText id="mail" value="#{root.personnel.email}" type="mail" style="width: 200px;" />
+
+
+                        <p:outputLabel for="groupe"  value="GROUPE"/>
+                        <p:selectOneMenu id="groupe" value="#{root.groupe}" style="width: 250px;">
+                            <f:selectItem itemLabel="PERSONNEL" itemValue="ROLE_USER"/>
+                            <f:selectItem itemLabel="SUPER USER" itemValue="ROLE_ADMIN"/>
+                            <f:selectItem itemLabel="COMPTABLE MATIERE" itemValue="ROLE_COM"/>
+                            <f:selectItem itemLabel="CHARGER MAINTENANCE" itemValue="ROLE_CHAR"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="pwd"  value="#{msg['iden_pwd']}"/>
+                        <p:password  id="pwd" value="#{root.pwd}"   style="width: 200px;" />
+                    </h:panelGrid>
+                    <p:panel visible="false">
+                        <p:inputText id="id" value="#{root.personnel.id}" />
+                    </p:panel>
+
+                    <p:commandButton value="#{msg['iden_menu_enregistrer_label']}" actionListener="#{root.updatePersonnel}" update="display,:PersonnelListForm:pTable,:growl" oncomplete="PersonnelEditDialog.hide();"/>
+                    <p:commandButton value="#{msg['iden_cancel']}" onclick="PersonnelEditDialog.hide();"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

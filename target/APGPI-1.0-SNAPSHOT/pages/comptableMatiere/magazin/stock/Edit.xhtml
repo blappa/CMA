@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StockEditDlg" header="Mise à jour" widgetVar="StockEditDialog" modal="true" resizable="false" appendToBody="true" showEffect="puff"    hideEffect="clip"> 
+            <h:form id="StockEditForm" > 
+                <h:panelGroup id="display" >
+                    <h:panelGrid rendered="#{mat.magazin != null}" columns="2" cellpadding="5">
+                        <p:outputLabel for="materiel"  value="Materiel"/>
+                        <p:selectOneMenu id="materiel" value="#{mat.idMateriel}" style="width: 500px;" >
+                            <f:selectItems value="#{root.materielList}" var="p" itemLabel="#{p.nomMateriel} #{p.marquee}" itemValue="#{p.id}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="date"  value="Date peremtion"/>
+                        <p:calendar id="date" value="#{mat.magazin.peremtion}"  pattern="dd/MM/yyyy" showOn="button" />
+
+                        <p:outputLabel for="qte"  value="#{msg['iden_quantite_materiel']}"/>
+                        <p:inputText id="qte" value="#{mat.magazin.stock}" />
+                        <p:panel visible="false">
+                            <p:inputText id="id" value="#{mat.magazin.idStock}" />
+                        </p:panel>
+                    </h:panelGrid>
+                    <p:commandButton value="#{msg['iden_menu_enregistrer_label']}"  actionListener="#{mat.updateStock}" update="display,:StockListForm:pTable,:growl" oncomplete="StockCreateDialog.hide();"/>
+                    <p:commandButton value="#{msg['iden_cancel']}" onclick="MaterielEditDialog.hide();"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

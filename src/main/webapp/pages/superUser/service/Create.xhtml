@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ServiceCreateDlg" header="Modal Dialog" widgetVar="ServiceCreateDialog"  modal="true" resizable="false" appendToBody="true" showEffect="puff"    hideEffect="clip">
+            <h:form id="ServiceCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" cellpadding="5"> 
+                        <p:outputLabel for="nomS"  value="#{msg['iden_nom']} service"/>
+                        <p:autoComplete id="nomS" value="#{root.ser.nomService}" required="true" requiredMessage="#{msg['iden_nom_msg']} service" accesskey="1"  />
+
+                        <p:outputLabel for="sig"  value="Sigle"/>
+                        <p:autoComplete id="sig" value="#{root.ser.sigleService}" required="true" requiredMessage="#{msg['iden_nom_msg']} sigle" accesskey="1"  />
+
+
+                        <p:commandButton value="#{msg['iden_menu_enregistrer_label']}"   actionListener="#{root.newService}" update="display,:ServiceListForm:pTable,:growl" oncomplete="ServiceCreateDialog.hide();"/>
+                        <p:commandButton value="Cancel" onclick="MaterielCreateDialog.hide();"/>
+                    </h:panelGrid>  
+                </h:panelGroup>
+                <p:confirmDialog message="Enregistrement Réussit"  header="Notice" severity="alert" widgetVar="fs"></p:confirmDialog>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="MaterielListForm" >
+        <div id="datalist">
+            <p:panel header="#{msg.iden_menu_afficher_materiel}">
+                <p:dataTable id="pTable"  var="m" value="#{mat.materielList}"  rowKey="#{m.id}" resizableColumns="true"
+                             selectionMode="single" selection="#{mat.materiel}"
+                             paginator="true"
+                             rows="20"
+                             rowsPerPageTemplate="05,10,20"
+                             emptyMessage="aucun element"
+                             rowIndexVar="index">
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column filterBy="#{m.nomMateriel}" filterMatchMode="startsWith" > 
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_nom_materiel']}"/>
+                        </f:facet>
+                        <h:outputText value="#{m.nomMateriel}" />
+                    </p:column>
+                    <p:column > 
+                        <f:facet name="header">
+                            <h:outputText value="Fournisseur"/>
+                        </f:facet>
+                        <h:outputText value="#{m.nomFournisseur}" />
+                    </p:column>
+                    <p:column > 
+                        <f:facet name="header">
+                            <h:outputText value="Type"/>
+                        </f:facet>
+                        <h:outputText value="#{m.type}" />
+                    </p:column>
+                    <p:column  filterBy="#{m.adresseIP}" filterMatchMode="startsWith" >  
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_adresse_materiel']}"/>
+                        </f:facet>
+                        <h:outputText value="#{m.adresseIP}" />
+                    </p:column>
+                    <p:column > 
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_marquee_materiel']}"/>
+                        </f:facet>
+                        <h:outputText value="#{m.marquee}" />                                       
+                    </p:column> 
+                    <p:column filterMatchMode="exact"> 
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_serie_materiel']}"/>
+                        </f:facet>
+                        <h:outputText value="#{m.numSerie}" />
+                    </p:column>
+                    <p:column >    
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_dateGarantie_materiel']}"/>
+                        </f:facet>
+                        <h:outputText value="#{m.dateDebutGarantie}" />
+                    </p:column>
+                    <p:column>    
+                        <f:facet name="header">
+                            <h:outputText value="Duree garantie"/>
+                        </f:facet>
+                        <h:outputText value="#{m.dureeGarantie}" />
+                    </p:column>
+                    <p:column>      
+                        <f:facet name="header">
+                            <h:outputText value="En stock"/>
+                        </f:facet>
+                        <h:outputText value="#{m.enStock}" />
+                    </p:column>
+
+                </p:dataTable>
+            </p:panel>
+        </div>
+        <div id="bouton">
+            <ul>  
+                <ol> <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{msg.iden_menu_ajouter_label}"  oncomplete="MaterielCreateDialog.show()"/></ol>
+                <ol><p:commandButton id="viewButton"   icon="ui-icon-search" value="#{msg.iden_menu_afficher_label}" update=":MaterielViewForm" oncomplete="MaterielViewDialog.show()" disabled="#{empty mat.materiel}"/></ol>
+                <ol> <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{msg.iden_menu_modifier_label}" update=":MaterielEditForm:display" oncomplete="MaterielEditDialog.show()" disabled="#{empty mat.materiel}"/></ol>
+                <ol> <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{msg.iden_supprimer}" actionListener="#{mat.deleteMateriel}" update="pTable" disabled="#{empty mat.materiel}"/></ol>   
+                <ol> <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retourc"/></ol>   
+            </ul>
+        </div>
+    </h:form>
+</ui:composition>

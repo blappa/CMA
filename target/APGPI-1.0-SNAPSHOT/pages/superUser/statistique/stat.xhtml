@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+        <dir style="width: 40%;float: left; margin-left: 5%;padding-top: 40px">
+            <p:panel id="stat1">
+                <p:barChart id="basic1" value="#{stat.categoryModel1}" legendPosition="ne"   zoom="true" widgetVar="chart1"
+                            title="Statistique des entrées du materiel par année" min="0" max="1000" style="width:400px" animate="true"/>
+
+                <h:form>
+                    <p:commandButton type="button" value="Export" icon="ui-icon-extlink" onclick=" $('#output1').empty().append(chart1.exportAsImage());
+                            dlg1.show();"/>
+                </h:form>  
+
+                <p:dialog widgetVar="dlg1" showEffect="fade" modal="true" header="Statistique des entrées du materiel">  
+                    <p:outputPanel id="output1" layout="block" style="width:500px;height:300px"/>  
+                </p:dialog> 
+            </p:panel>
+        </dir>
+        <dir style="width: 40%;float: right;padding-top: 40px">
+            <p:panel id="stat2">
+                <p:barChart id="basic2" value="#{stat.categoryModel2}" legendPosition="ne"   zoom="true" widgetVar="chart2"
+                            title="Statistique des demandes du materiel par année" min="0" max="1000" style="width:400px" animate="true"/>
+
+                <h:form>
+                    <p:commandButton type="button" value="Export" icon="ui-icon-extlink" onclick=" $('#output2').empty().append(chart2.exportAsImage());
+                            dlg2.show();"/>
+                </h:form>  
+
+                <p:dialog widgetVar="dlg2" showEffect="fade" modal="true" header="Statistique des sorties du materiel">  
+                    <p:outputPanel id="output2" layout="block" style="width:500px;height:300px"/>  
+                </p:dialog> 
+            </p:panel>
+        </dir>
+
+</ui:composition>

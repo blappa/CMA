@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rmateriel" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df7f0b4e-e02d-4fa8-90c1-ab3f0771c20b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nomMateriel" class="java.lang.String"/>
+	<field name="nomFournisseur" class="java.lang.String"/>
+	<field name="marquee" class="java.lang.String"/>
+	<field name="numSerie" class="java.lang.String"/>
+	<field name="dureeGarantie" class="java.lang.String"/>
+	<group name="Group1">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="179">
+			<image>
+				<reportElement x="0" y="0" width="555" height="159" uuid="3a6f4270-e29a-42eb-b2ea-e18a73281dde"/>
+				<imageExpression><![CDATA["../entete_cndt.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="29">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-7" width="595" height="31" backcolor="#006699" uuid="18ac5747-6ac2-444b-be3b-0a9f8cc2b109"/>
+				<staticText>
+					<reportElement x="20" y="7" width="282" height="19" forecolor="#FFFFFF" uuid="0434a59f-e980-4e62-ae8f-2de95d73601b"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[LISTE DES MATERIELS DISPONIBLES]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="067c33ab-19a7-41bc-a252-b70c49b1ff33"/>
+			</line>
+			<staticText>
+				<reportElement x="120" y="2" width="100" height="20" forecolor="#386CBB" uuid="fed0d6c0-4a3f-4007-81eb-6a74adcb2a13"/>
+				<text><![CDATA[FOURNISSEUR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="2" width="100" height="20" forecolor="#386CBB" uuid="c6f9d7ac-202a-46b6-abb9-3754e0315bcf"/>
+				<text><![CDATA[MATERIEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="0" width="100" height="20" forecolor="#386CBB" uuid="8616608d-4d5b-4ab5-abf7-21e8b89e5280"/>
+				<text><![CDATA[MARQUEE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="1" width="100" height="20" forecolor="#386CBB" uuid="cbaf9c3d-0299-4fc5-896f-2a8a59e48edf"/>
+				<text><![CDATA[SERIE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="1" width="100" height="20" forecolor="#386CBB" uuid="4ef3bd2b-40b4-444f-92f7-8d3e11706e4e"/>
+				<text><![CDATA[DUREE GARANTIE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="22" width="555" height="1" uuid="41c45005-fcc6-4679-b7d0-c064c9714d94"/>
+			</line>
+			<textField>
+				<reportElement x="120" y="2" width="100" height="20" uuid="17ca0678-b901-424b-bf88-83b7a9fd529c"/>
+				<textFieldExpression><![CDATA[$F{nomFournisseur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="2" width="100" height="20" uuid="7d12cac3-1416-487e-9e24-63aacf6f168c"/>
+				<textFieldExpression><![CDATA[$F{nomMateriel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="3" width="100" height="20" uuid="ab5a5c13-890a-4af4-9dd6-85655a585180"/>
+				<textFieldExpression><![CDATA[$F{marquee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="3" width="100" height="20" uuid="143bee08-9ec5-4027-97d9-f88410a7786c"/>
+				<textFieldExpression><![CDATA[$F{numSerie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="2" width="100" height="20" uuid="81e433f6-5c95-4410-8e09-b83f81b97f14"/>
+				<textFieldExpression><![CDATA[$F{dureeGarantie}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="a2e982ff-ce93-4502-a3d6-22dcd3bea714"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="c6de363a-cc04-4bce-856d-3e1e53ec7d38"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="9068d71a-8e65-4996-b294-54b9ee1aea07"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

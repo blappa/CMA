@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="LogicielListForm" >
+        <div id="datalist">
+            <p:panel header="#{msg.iden_menu_afficher_logiciel}">
+                <p:dataTable id="pTable"  var="p" value="#{mat.logicielList}"  rowKey="#{p.id}"
+                             selectionMode="single" selection="#{mat.logiciel}"
+                             paginator="true"
+                             rows="20"
+                             rowsPerPageTemplate="05,10,20"
+                             emptyMessage="aucun element"
+                             rowIndexVar="index"
+                             scrollable="false">
+
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column filterBy="#{p.nomLogiciel}" filterMatchMode="startsWith" headerText="#{msg['iden_nom_materiel']}" >                                   
+                        <h:outputText value="#{p.nomLogiciel}" />
+                    </p:column>
+                    <p:column  headerText="Licence" filterBy="#{p.licence}" filterMatchMode="startsWith">                                   
+                        <h:outputText value="#{p.licence}" />
+                    </p:column>
+                    <p:column  headerText="Type" filterBy="#{p.type}" filterMatchMode="startsWith">                                   
+                        <h:outputText value="#{p.type}" />
+                    </p:column>
+                    <p:column  headerText="#{msg['iden_version_logiciel']}" filterBy="#{p.version}" filterMatchMode="startsWith">                                   
+                        <h:outputText value="#{p.version}" />
+                    </p:column>
+                    <p:column  headerText="#{msg['iden_editeur_logiciel']}" filterBy="#{p.editeur}" filterMatchMode="startsWith">                                  
+                        <h:outputText id="editeur" value="#{p.editeur}" />                                       
+                    </p:column> 
+                    <p:column   filterOptions="#{mat.name}" headerText="#{msg['iden_serie_materiel']}" 
+                                filterMatchMode="exact">                                    
+                        <h:outputText value="#{p.numSerie}" />
+                    </p:column>
+                    <p:column   headerText="#{msg['iden_date_install']}">                                    
+                        <h:outputText value="#{p.dateInstallation}" />
+                    </p:column>
+
+                </p:dataTable>
+            </p:panel>
+        </div>
+        <div id="bouton">
+            <ul>
+                <ol><p:commandButton id="createButton" icon="ui-icon-plus"   value="#{msg.iden_menu_ajouter_label}"   oncomplete="LogicielCreateDialog.show();"/></ol>
+                <ol> <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{msg.iden_menu_afficher_label}" update=":LogicielViewForm" oncomplete="LogicielViewDialog.show();" disabled="#{empty mat.logiciel}"/></ol>
+                <ol> <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{msg.iden_menu_modifier_label}" update=":LogicielEditForm:display" oncomplete="LogicielEditDialog.show();" disabled="#{empty mat.logiciel}"/></ol>
+                <ol> <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{msg.iden_supprimer}" actionListener="#{mat.deleteMateriel}"  update="pTable" disabled="#{empty mat.logiciel}" /></ol>
+                 <ol> <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retours"/></ol>  
+            </ul>
+        </div>
+    </h:form>
+</ui:composition>

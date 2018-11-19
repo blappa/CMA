@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE xhtml PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+
+    </h:head>
+    <h:body >
+        <p:panel style="background-color: activeborder;font:bold medium fantasy;" >
+            <h:form id="form" >
+                <p:dataTable  value="#{root.demandeList}" var="p" id="pTable"
+                              resizableColumns="false" selection="#{root.dem}" selectionMode="single" sortBy="#{p.designation}"
+                              rowKey="#{p.id}" widgetVar="pTable">
+                    <p:ajax event="rowSelect" update=":form" />
+                    <p:column    headerText="#{msg['iden_alerte_demande_materiel']}" >                                   
+                        <h:outputText value="id=#{p.id} #{p.designation}; par #{p.demandeur}" />                                      
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
+
+
+

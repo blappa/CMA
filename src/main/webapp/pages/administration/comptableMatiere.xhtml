@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="templateCom.xhtml">
+        <!--        <ui:define name="title">
+                    <h:outputText value="#{msg.iden_nom_app}"></h:outputText>
+                </ui:define>-->
+        <ui:define name="content">
+            <p:panel header="#{msg.iden_accueil}">
+                <p><h:outputText value="#{msg.iden_bienvenu}"></h:outputText></p>
+            </p:panel>
+            <div style="width: 50%;float: left;">
+                <p:panel header="#{msg['iden_notification']}" style="background-color: activeborder;font:bold medium fantasy;" >
+
+                    <h:form id="form" >
+                        <p:dataTable  value="#{root.demandeTotal}" var="p" id="pTable"  selection="#{root.dem}" selectionMode="single" 
+                                      rowKey="#{p.id}" widgetVar="pTable"
+                                      emptyMessage="aucune demande"
+                                      rowIndexVar="index"
+                                      scrollable="false"
+                                      paginator="true" rows="10"
+                                      rowStyleClass="#{root.couleur(p)}">
+                            <p:ajax event="rowSelect" update=":form" />
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="No"/>
+                                </f:facet>
+                                <h:outputText value="#{index+1}"/>
+                            </p:column>
+                            <p:column    headerText="#{msg['iden_alerte_demande_materiel']}" >                                   
+                                <h:outputText value=" #{p.materiel.nomMateriel} de marquee: #{p.materiel.marquee}; par #{p.personnel.nom} #{p.personnel.prenom}" />                                      
+                            </p:column>
+                            <p:column    headerText="Date demande" >                                   
+                                <h:outputText value="#{p.dateDemande}" />                                      
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:panel>
+            </div>
+            <div style="width: 50%;float: right;">
+                <p:panel style="background-color: activeborder;font:bold medium fantasy;" >
+                    <h:form id="form1" >
+                        <p:dataTable  value="#{mat.affectationdemandList}" var="m" id="pTable1"
+                                      resizableColumns="false" selection="#{mat.affectationdemand}" selectionMode="single"
+                                      rowKey="#{m.id}" widgetVar="pTable1" emptyMessage="aucune affectation effectuée"
+                                      rowIndexVar="index"
+                                      scrollable="false"
+                                      paginator="true" rows="10"
+                                      >
+                            <p:ajax event="rowSelect" update=":form1" />
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="No"/>
+                                </f:facet>
+                                <h:outputText value="#{index+1}"/>
+                            </p:column>
+                            <p:column    headerText="#{msg['iden_alerte_affecter_materiel']}" >                                   
+                                <h:outputText value="#{m.IDMateriel.nomMateriel} de marquee:#{m.IDMateriel.marquee} à #{m.IDPersonnel.nom} #{m.IDPersonnel.prenom}" />                                      
+                            </p:column>
+                            <p:column    headerText="Date" >                                   
+                                <h:outputText value="#{m.dateAffec}" />                                      
+                            </p:column>
+                            <p:column  headerText="#{msg['iden_servies_materiel']}" >                                   
+                                <h:outputText value="#{m.demande.servies}" />
+                            </p:column>
+                        </p:dataTable>
+                        
+                    </h:form>  
+                </p:panel>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <h:form id="form1" >
+                <p:dataTable id="pTable" value="#{mat.reparationList}" var="p" paginator="true" rows="15" scrollable="false" 
+                             emptyMessage="aucun element"
+                             rowIndexVar="index"
+                             >
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column filterBy="#{p.materiel.nomMateriel}" filterMatchMode="startsWith" headerText="Materiel" >                                   
+                        <h:outputText value="#{p.materiel.nomMateriel} #{p.materiel.marquee}" />
+                    </p:column>
+                    <p:column  headerText="#{msg['iden_date_reparation']}">                                  
+                        <h:outputText id="date" value="#{p.dateReparation}" />                                       
+                    </p:column>
+                    <p:column   headerText="#{msg['iden_nom_reparateur']}" filterBy="#{p.personnel.nom}" filterMatchMode="startsWith">                                    
+                        <h:outputText value="#{p.personnel.nom} #{p.personnel.prenom}" />
+                    </p:column>
+                    <p:column  headerText="Description">                                  
+                        <h:outputText id="description" value="#{p.description}" />                                       
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retours"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

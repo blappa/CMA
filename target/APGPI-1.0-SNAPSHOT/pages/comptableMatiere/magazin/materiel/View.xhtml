@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MaterielViewDlg" widgetVar="MaterielViewDialog" modal="true" appendToBody="true" resizable="false" showEffect="clip" hideEffect="fold" header="Profil">
+
+                <h:form id="MaterielViewForm">
+
+                    <h:panelGroup id="display" >
+                        <p:panelGrid columns="2" >
+                            <f:facet name="header">  
+                                <p:graphicImage value="/resources/images/sigle.PNG" style="width: 75%; height: 50%"/>  
+                            </f:facet>
+                            <h:outputText value="Matériel"/>
+                            <h:outputText value="#{mat.materiel.nomMateriel}" />
+
+                            <h:outputText value="#{msg['iden_dateGarantie_materiel']}"/>
+                            <h:outputText value="#{mat.materiel.dateDebutGarantie}" />
+
+                            <h:outputText value="Fournisseur"/>
+                            <h:outputText value="#{mat.materiel.nomFournisseur}" />
+
+                            <h:outputText value="Duree garantie"/>
+                            <h:outputText value="#{mat.materiel.dureeGarantie}" />
+
+                            <h:outputText value="#{msg['iden_marquee_materiel']}"/>
+                            <h:outputText value="#{mat.materiel.marquee}" />
+
+                            <h:outputText value="#{msg['iden_serie_materiel']}"/>
+                            <h:outputText value="#{mat.materiel.numSerie}" />
+
+                            <h:outputText value="#{msg['iden_type_materiel']}"/>
+                            <h:outputText value="#{mat.materiel.type}" />
+
+                            <h:outputText value="#{msg['iden_adresse_materiel']}"/>
+                            <h:outputText value="#{mat.materiel.adresseIP}" />
+
+                            <h:outputText   value="En stock"/>
+                            <h:outputText value="#{mat.materiel.enStock}"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Close" onclick="MaterielViewDialog.hide();"/>
+                    </h:panelGroup>
+
+                </h:form>
+
+            </p:dialog>
+
+    </ui:composition>
+
+</html>

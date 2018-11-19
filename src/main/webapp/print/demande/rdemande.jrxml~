@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdemande" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e731b914-2fe8-4b48-8c5b-9edb8a4d8c93">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.background.image.properties" value="true,true,0.25,-8,-8,0,0,538,223"/>
+	<field name="personnel" class="java.lang.Object"/>
+	<field name="materiel" class="java.lang.Object"/>
+	<field name="espece" class="java.lang.String"/>
+	<field name="qte" class="java.lang.Long"/>
+	<field name="servies" class="java.lang.Long"/>
+	<field name="dateDemande" class="java.util.Date"/>
+	<field name="observation" class="java.lang.String"/>
+	<group name="Group1">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="224">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="176" width="595" height="43" backcolor="#006699" uuid="b37017b9-abdd-454a-82ac-f62d40c65443"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="20" forecolor="#FFFFFF" uuid="79a5f4fe-28e3-4e6a-ada1-79fe610c0e40"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[LISTE DES DEMANDES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="20" width="180" height="20" forecolor="#FFFFFF" uuid="12b5ed6f-ceb2-470d-b1b6-7eafa36bad34"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[liste de materiel sortant]]></text>
+				</staticText>
+			</frame>
+			<image>
+				<reportElement x="0" y="0" width="555" height="176" uuid="6261283d-4ace-4d89-860f-1ec9757a1837"/>
+				<imageExpression><![CDATA["/home/lappa/Images/entete_cndt.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="b5f36f9b-5401-4b6b-8667-6f95b50b59d1"/>
+			</line>
+			<staticText>
+				<reportElement x="471" y="0" width="84" height="20" forecolor="#79A2E2" uuid="9dac374b-644e-43bf-8ec0-60d694265262"/>
+				<text><![CDATA[OBSERVATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="146" y="0" width="64" height="20" forecolor="#79A2E2" uuid="0aa689c2-44d8-4754-bca5-3f17648f3ca9"/>
+				<text><![CDATA[ESPECE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="1" width="94" height="20" forecolor="#79A2E2" uuid="2293db6f-26ee-4100-9ca9-3b000970ba46"/>
+				<text><![CDATA[DATE DEMANDE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="2" width="69" height="20" forecolor="#79A2E2" uuid="08e7d6b8-c76e-45e5-96d6-e38b3dc55423"/>
+				<text><![CDATA[QUANTITE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="68" height="20" forecolor="#79A2E2" uuid="8418a707-33f9-494a-900b-5579a897266a"/>
+				<text><![CDATA[PERSONNEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="2" width="69" height="20" forecolor="#79A2E2" uuid="3c17599f-9b56-4474-b9c3-814a53994941"/>
+				<text><![CDATA[SERVIE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="1" width="65" height="20" forecolor="#79A2E2" uuid="cbd3c494-aa7c-4a5a-b372-1ba8ff0584be"/>
+				<text><![CDATA[MATERIEL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="20" width="555" height="1" uuid="313cd180-ea5d-46bf-b388-e392a73d06c8"/>
+			</line>
+			<textField>
+				<reportElement x="370" y="1" width="94" height="20" uuid="9f942b34-a4a9-419a-ae94-aab0e7b8d5df"/>
+				<textFieldExpression><![CDATA[$F{dateDemande}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="1" width="84" height="20" uuid="8e0c80fe-1242-46c9-8bff-9c43cc898bd6"/>
+				<textFieldExpression><![CDATA[$F{observation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="291" y="0" width="69" height="20" uuid="73d42771-cc02-4198-9787-6b1b6ab17087"/>
+				<textFieldExpression><![CDATA[$F{servies}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="0" width="64" height="20" uuid="fe92c954-531d-4f03-ae1a-3324556a4abe"/>
+				<textFieldExpression><![CDATA[$F{espece}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="68" height="20" uuid="11e9d34a-7ec4-4029-9d24-b7eaea50c439"/>
+				<textFieldExpression><![CDATA[$F{personnel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="1" width="65" height="20" uuid="42cbc3fd-19a5-4286-a074-76c2e42e22c6"/>
+				<textFieldExpression><![CDATA[$F{materiel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="69" height="20" uuid="dd6b6b2e-bab0-4892-8649-3eabd1397d54"/>
+				<textFieldExpression><![CDATA[$F{qte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="406cf6ae-7c64-4f6b-bfa5-cf42220206ec"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="d994d47d-8e09-4610-b8cc-87462b0d50e2"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="8781c26c-815d-4305-8816-a129dc5ef077"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

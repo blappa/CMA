@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DemandeListForm" >
+        <div id="datalist">
+            <p:panel header="#{msg.iden_menu_demande}">
+                <p:dataTable id="pTable" var="p"  value="#{root.demandeList}" rowKey="#{p.id}" resizableColumns="true"
+                             selectionMode="single" selection="#{root.demande}"
+                             paginator="true"
+                             rows="15"
+                             rowsPerPageTemplate="05,10,15"
+                             emptyMessage="aucun element"
+                             rowIndexVar="index">
+
+                     <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                        <p:column   filterBy="#{p.materiel.nomMateriel}" filterMatchMode="startsWith" headerText="Designation" >                                   
+                            <h:outputText value="#{p.materiel.nomMateriel} #{p.materiel.marquee}" />                                      
+                        </p:column><!--
+                        <p:column headerText="#{msg['iden_espece_materiel']}">                                    
+                            <h:outputText id="espece" value="#{p.espece}" />                                       
+                        </p:column>-->
+                        <p:column headerText="#{msg['iden_quantite_materiel']} #{msg['iden_menu_demande']}">                                    
+                            <h:outputText id="quantite" value="#{p.qte}" />                                       
+                        </p:column>
+                        <p:column headerText="#{msg['iden_quantite_materiel']} #{msg['iden_servies_materiel']}">                                    
+                            <h:outputText id="servies" value="#{p.servies}" />                                       
+                        </p:column>
+                        <p:column headerText="Demandeur" filterBy="#{p.personnel.nom}" filterMatchMode="startsWith">                                    
+                            <h:outputText id="demandeur" value="#{p.personnel.nom} #{p.personnel.prenom}" />                                       
+                        </p:column>
+                        <p:column headerText="#{msg['iden_date_materiel']}">                                    
+                            <h:outputText id="date" value="#{p.dateDemande}" />                                       
+                        </p:column>
+                        <p:column headerText="#{msg['iden_obs']}">                                    
+                            <h:outputText id="ons" value="#{p.observation}" />                                       
+                        </p:column>
+                </p:dataTable>
+            </p:panel>
+        </div>
+        <div id="bouton">
+            <ul>  
+                <ol> <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{msg.iden_menu_ajouter_label}"  oncomplete="DemandeCreateDialog.show()"/></ol>
+                <ol><p:commandButton id="viewButton"   icon="ui-icon-search" value="#{msg.iden_menu_afficher_label}" update=":DemandeViewForm" oncomplete="DemandeViewDialog.show()" disabled="#{empty root.demande}"/></ol>
+                <ol> <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{msg.iden_menu_modifier_label}" update=":DemandeEditForm:display" oncomplete="DemandeEditDialog.show()" disabled="#{empty root.demande}"/></ol>
+                <ol> <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{msg.iden_supprimer}" actionListener="#{root.deleteDemande}" update="pTable,:growl" disabled="#{empty root.demande}"/></ol>   
+                <ol> <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retourc"/></ol>   
+            </ul>
+        </div>
+    </h:form>
+</ui:composition>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE xhtml PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <h:form id="form1" >
+                <p:dataTable id="pTable"  var="p" value="#{mat.consultationList}"  
+                             paginator="true" rows="15" 
+                             scrollable="false"
+                             emptyMessage="aucun element"
+                             rowIndexVar="index"
+                             >
+                    
+                    <p:ajax event="rowSelect" update=":form1" />
+                    
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column   filterBy="#{p.IDMateriel.nomMateriel}" filterMatchMode="startsWith" headerText="Materiel" >                                   
+                        <h:outputText value="#{p.IDMateriel.nomMateriel} #{p.IDMateriel.marquee}" />                                      
+                    </p:column>
+                    <p:column headerText="#{msg['iden_diagnostic']}">                                    
+                        <h:outputText id="diagnostic" value="#{p.diagnostic}" />                                       
+                    </p:column>
+                    <p:column headerText="#{msg['iden_traitement']}">                                    
+                        <h:outputText id="traitement" value="#{p.traitement}" />                                       
+                    </p:column>
+                    <p:column headerText="#{msg['iden_prix']}" filterBy="#{p.prix}" filterMatchMode="startsWith">                                    
+                        <h:outputText id="prix" value="#{p.prix}" />                                       
+                    </p:column>
+                    <p:columnGroup type="footer">
+                        <p:row>
+                            <p:column colspan="7" footerText="TOTAL: "/>
+                            <p:column colspan="2" footerText="#{mat.consultationList.size()}"/>
+                        </p:row>
+                    </p:columnGroup>
+                </p:dataTable>
+                <p:outputPanel autoUpdate="true" >                            
+                    <p:commandButton image="export" id="excel" value="Export as Excel" ajax="false"> 
+                        <p:dataExporter type="xls" target="pTable" fileName="ListeDuMateriel"/>
+                    </p:commandButton>
+                    <p:commandButton image="printer" id="prin" value="#{msg['iden_menu_print']}" ajax="false" >
+                        <p:printer  target="pTable"/>                                   
+                    </p:commandButton>
+                    <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retourp"/>
+                </p:outputPanel> 
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
+
+

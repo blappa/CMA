@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ConsultationViewDlg" widgetVar="ConsultationViewDialog" modal="true" appendToBody="true" resizable="false" showEffect="clip" hideEffect="fold" header="Profil">
+
+            <h:form id="ConsultationViewForm">
+
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2" > 
+                        <h:outputText  value="Materiel"/>
+                        <h:outputText  value="#{mat.cons.IDMateriel.nomMateriel} #{mat.cons.IDMateriel.marquee}"/>
+
+                        <h:outputText   value="#{msg['iden_diagnostic']}"/>
+                        <h:outputText  value="#{mat.cons.diagnostic}" style="width: 205px;"/>
+
+                        <h:outputText   value="#{msg['iden_traitement']}"/>
+                        <h:outputText  value="#{mat.cons.traitement}" style="width: 205px;"/>
+
+
+                            <h:outputText value="#{msg['iden_prix']}" style="width: 220px;"/>
+                            <h:outputText  value="#{mat.cons.prix}" />
+
+                            <p:commandButton value="Close" onclick="ConsultationViewDialog.hide();"/>
+                    </p:panelGrid>
+                </h:panelGroup>
+
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

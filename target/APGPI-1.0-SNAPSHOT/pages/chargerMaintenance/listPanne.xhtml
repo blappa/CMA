@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <h:form id="form1" >
+                <p:dataTable id="pTable"  var="p" value="#{mat.panneList}" paginator="true" rows="15" scrollable="false" 
+                             emptyMessage="aucun element"
+                             rowIndexVar="index"
+                             >
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column filterBy="#{p.nomPanne}" filterMatchMode="startsWith" headerText="#{msg['iden_menu_panne']}" >                                   
+                        <h:outputText value="#{p.nomPanne}" />
+                    </p:column>
+                    <p:column  headerText="Materiel" >                                   
+                        <h:outputText value="#{p.IDMateriel.nomMateriel} #{p.IDMateriel.marquee}" />
+                    </p:column>
+                    <p:column  headerText="Date:">                                  
+                        <h:outputText id="date" value="#{p.datePanne}" />                                       
+                    </p:column>
+                    <p:column  headerText="#{msg['iden_obs']}" 
+                               filterMatchMode="startsWith">                                   
+                        <h:outputText value="#{p.description}" />                                     
+                    </p:column>
+                   
+                </p:dataTable>
+                <p:outputPanel autoUpdate="true" >                            
+                    <p:commandButton image="export" id="excel" value="Export as Excel" ajax="false"> 
+                        <p:dataExporter type="xls" target="pTable" fileName="ListeDuMateriel"/>
+                    </p:commandButton>
+                    <p:commandButton image="printer" id="prin" value="#{msg['iden_menu_print']}" ajax="false" >
+                        <p:printer  target="pTable"/>                                   
+                    </p:commandButton>
+                    <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retourch"/>
+                </p:outputPanel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

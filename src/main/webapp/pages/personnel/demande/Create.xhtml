@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DemandeCreateDlg" header="#{msg['iden_menu_demande_ajouter']}" widgetVar="DemandeCreateDialog"  modal="true" resizable="false" appendToBody="true" showEffect="puff"    hideEffect="clip">         
+
+            <h:form id="DemandeCreateForm" > 
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" cellpadding="5">   
+                            <p:outputLabel for="designation"  value="Designation"/>
+                            <p:selectOneMenu id="designation" value="#{root.idMateriel}" required="true" requiredMessage="#{msg['iden_nom_msg']}" style="width: 250px;" >
+                                    <f:selectItems value="#{mat.materielList}" var="p" itemLabel="#{p.nomMateriel} #{p.marquee}: Serie #{p.numSerie}" itemValue="#{p.id}"/>
+                            </p:selectOneMenu>
+                                
+                            <p:outputLabel for="quantite"  value="#{msg['iden_quantite_materiel']} demande"/>
+                            <p:inputText id="quantite" value="#{root.demande.qte}" />
+                            
+                            <p:outputLabel for="date"  value="Date"/>
+                            <p:calendar id="date"  value="#{root.demande.dateDemande}" required="true" pattern="dd/MM/yyyy" showOn="button" style="width: 200px;" />
+                        
+                            <p:outputLabel for="servies"  value="#{msg['iden_quantite_materiel']} servies"/>
+                            <p:inputText id="servies" disabled="true" value="#{root.demande.servies}" />
+
+                            <p:outputLabel for="obs"  value="#{msg['iden_obs']}"/>
+                            <p:inputTextarea id="obs" value="#{root.demande.observation}" style="width: 200px;" />
+                        
+                            <p:commandButton value="#{msg['iden_menu_ajouter_label']}"   actionListener="#{root.newDemande}" update="display,:DemandeListForm:pTable,:growl" oncomplete="DemandeCreateDialog.hide();" />
+                            <p:commandButton value="#{msg['iden_cancel']}" onclick="DemandeCreateDialog.hide();"/>
+                    </h:panelGrid>  
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>  
+
+    </ui:composition>
+
+</html>

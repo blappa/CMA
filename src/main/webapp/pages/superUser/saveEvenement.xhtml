@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <p:panel header="#{msg['iden_menu_enrg_evenement']}">
+                <h:form id="form3">
+                    <table>
+                        <tr>
+                            <td><p:outputLabel for="nom"  value="#{msg['iden_nom_enenement']}"/></td>
+                            <td><p:inputText id="nom" value="#{mat.even.nomEven}" />
+
+                            </td><td><p:message for="nom"/></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel for="materiel"  value="Materiel"/></td>
+                            <td><p:selectOneMenu id="materiel" value="#{mat.idMateriel}" style="width: 500px;" >
+                                    <f:selectItems value="#{root.materielList}" var="p" itemLabel="#{p.nomMateriel} #{p.marquee}" itemValue="#{p.id}"/>
+                                </p:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel for="nbre"  value="#{msg['iden_nbre_jour_evenement']}"/></td>
+                            <td><p:inputText id="nbre" value="#{mat.even.nbreJour}" />
+
+                            </td><td><p:message for="nbre"/></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">
+                                <p:commandButton value="#{msg['iden_menu_ajouter_label']}"  actionListener="#{mat.saveEvenement}" update="form3,:growl"/>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+                
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

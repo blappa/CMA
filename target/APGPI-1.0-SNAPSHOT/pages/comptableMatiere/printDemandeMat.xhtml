@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <p:fieldset toggleable="false" legend="#{msg['iden_menu_materiel_affectation']}"  id="print">
+                <p:tooltip for="print" showEvent="onmousedown" value="#{msg['iden_menu_materiel_affectation']}"/>
+                <h:form id="form2" >
+                    <!-- <ui:include src="../include/entete_cndt.xhtml"/>-->
+                    <div id="datalist">
+                        <p:dataTable id="pTable"  var="p" value="#{mat.affectationdemandList}" rowKey="#{p.id}"
+                                     selectionMode="single" selection="#{mat.affectationdemand}" 
+                                     paginator="true" rows="15" scrollable="false"
+                                     rowsPerPageTemplate="05,10,20"
+                                     emptyMessage="aucun element"
+                                     rowIndexVar="index">
+                            
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="No"/>
+                                </f:facet>
+                                <h:outputText value="#{index+1}"/>
+                            </p:column>
+                            <p:column  headerText="#{msg['iden_nom_materiel']}" >                                   
+                                <h:outputText value="#{p.IDMateriel.nomMateriel} #{p.IDMateriel.marquee}" />
+                            </p:column>
+                            <p:column  headerText="#{msg['iden_id4']}" >                                   
+                                <h:outputText value="#{p.IDPersonnel.nom} #{p.IDPersonnel.prenom}" />
+                            </p:column>
+                            <p:column  headerText="#{msg['iden_servies_materiel']}" >                                   
+                                <h:outputText value="#{p.demande.servies}" />
+                            </p:column>
+                        </p:dataTable>
+                        <p:outputPanel autoUpdate="true" >                            
+                            <p:commandButton image="export" id="excel" value="Export as Excel" ajax="false"> 
+                                <p:dataExporter type="xls" target="pTable" fileName="ListeDuMateriel"/>
+                            </p:commandButton>
+                            <p:commandButton image="printer" id="prin" value="#{msg['iden_menu_print']}" ajax="false" >
+                                <p:printer  target="form2"/>                                   
+                            </p:commandButton>
+                        </p:outputPanel> 
+                    </div>
+                    <div id="bouton">
+                        <ul>  
+                            <ol> <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{msg.iden_supprimer}" actionListener="#{mat.deleteAffectation}" update="pTable,:growl" /></ol>
+                            <ol> <p:commandButton id="deleteButton1" icon="ui-icon-trash"  value="Tout supprimer" actionListener="#{mat.deleteAllAffectation}" update="pTable,:growl" /></ol>
+                            <ol> <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retourc"/></ol> 
+                        </ul>
+                    </div>
+                </h:form>
+            </p:fieldset> 
+        </ui:define>
+    </ui:composition>
+</html>
+
+

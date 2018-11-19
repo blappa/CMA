@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+       <p:dialog id="StockViewDlg" widgetVar="StockViewDialog" modal="true" resizable="false" appendToBody="true" header="Profil">
+
+                <h:form id="StockViewForm">
+
+                    <h:panelGroup id="display" >
+                        <p:panelGrid columns="2" >
+                            <f:facet name="header">  
+                                <p:graphicImage value="/resources/images/sigle.PNG" style="width: 75%; height: 50%"/>  
+                            </f:facet>
+                            <h:outputText value="Materiel"/>
+                            <h:outputText value="#{mat.magazin.materiel.nomMateriel}" />
+
+                            <h:outputText value="Date peremtion"/>
+                            <h:outputText value="#{mat.magazin.peremtion}" />
+
+                            <h:outputText value="#{msg['iden_quantite_materiel']}"/>
+                            <h:outputText value="#{mat.magazin.stock}" />
+
+                        </p:panelGrid>
+                        <p:commandButton value="Close" onclick="StockViewDialog.hide();"/>
+                    </h:panelGroup>
+
+                </h:form>
+
+            </p:dialog>
+
+    </ui:composition>
+
+</html>

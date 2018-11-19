@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="SoinsCreateDlg" header="Modal Dialog" widgetVar="SoinsCreateDialog"  modal="true" resizable="false" appendToBody="true" showEffect="puff"    hideEffect="clip">
+            <h:form id="SoinsCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" cellpadding="2">
+                        <p:outputLabel for="designation"  value="Designation"/>
+                        <p:selectOneMenu id="designation" value="#{mat.idMateriel}" required="true" requiredMessage="#{msg['iden_nom_msg']}"  style="width: 250px;" >
+                            <f:selectItems value="#{root.materielList}" var="p" itemLabel="#{p.nomMateriel} #{p.marquee}" itemValue="#{p.id}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="type"  value="#{msg['iden_type_soins']}"/>
+                        <p:selectOneMenu id="type" value="#{mat.soins.typeSoin}" style="width: 250px;">
+                            <f:selectItem itemLabel="Total" itemValue="Total"/>
+                            <f:selectItem itemLabel="Partiel" itemValue="Partiel"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="date"  value="#{msg['iden_date_Soins']}"/>
+                        <p:calendar id="date" value="#{mat.soins.dateDuJour}" pattern="dd/MM/yyyy" showOn="button"  style="width: 250px;" />
+
+                        <p:commandButton value="#{msg['iden_menu_ajouter_label']}"   actionListener="#{mat.saveSoins}" update="display,:SoinsListForm:pTable,:growl" oncomplete="SoinsCreateDialog.hide();"/>
+                        <p:commandButton value="Cancel" onclick="SoinsCreateDialog.hide();"/>
+                    </h:panelGrid>  
+                </h:panelGroup>
+
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

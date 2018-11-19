@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+    <application>
+        <el-resolver>
+            org.springframework.web.jsf.el.SpringBeanFacesELResolver
+        </el-resolver>
+        <resource-bundle>
+            <base-name>messages</base-name>
+            <var>msg</var>            
+        </resource-bundle> 
+
+    </application>
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>compte</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect >/index.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+ 
+     <navigation-rule>
+        <from-view-id>/pages/superUser/alerteDemande.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>superUser</from-outcome>
+            <to-view-id>/pages/administration/superUser.xhtml</to-view-id>
+            <redirect >/pages/administration/superUser.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/comptableMatiere/</from-view-id>
+        <navigation-case>
+            <from-outcome>modifierDemandeCom</from-outcome>
+            <to-view-id>/pages/comptableMatiere/updateDemande.xhtml</to-view-id>
+            <redirect >/pages/comptableMatiere/updateDemande.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saveDemande</from-outcome>
+            <to-view-id>/pages/comptableMatiere/listDemande.xhtml</to-view-id>
+            <redirect >/pages/comptableMatiere/listDemande.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>newLoginOK</from-outcome>
+            <to-view-id>/pages/comptableMatiere/changePwd.xhtml</to-view-id>
+            <redirect >/pages/comptableMatiere/changePwd.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>panne</from-outcome>
+            <to-view-id>/pages/comptableMatiere/panne/index.xhtml</to-view-id>
+            <redirect >/pages/comptableMatiere/panne/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saveLogiciel</from-outcome>
+            <to-view-id>/pages/comptableMatiere/magazin/logiciel/index.xhtml</to-view-id>
+            <redirect >/pages/comptableMatiere/magazin/logiciel/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saveMateriel</from-outcome>
+            <to-view-id>/pages/comptableMatiere/magazin/materiel/index.xhtml</to-view-id>
+            <redirect >/pages/comptableMatiere/magazin/materiel/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>stock</from-outcome>
+            <to-view-id>/pages/comptableMatiere/magazin/stock/index.xhtml</to-view-id>
+            <redirect >/pages/comptableMatiere/magazin/stock/index.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/superUser/statistique/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>stat</from-outcome>
+            <to-view-id>/pages/superUser/statistique/stat.xhtml</to-view-id>
+            <redirect >/pages/superUser/statistique/stat.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <to-view-id>/pages/personnel/</to-view-id>
+        <navigation-case>
+            <from-outcome>newLoginOK</from-outcome>
+            <to-view-id>/pages/personnel/changePwd.xhtml</to-view-id>
+            <redirect >/pages/personnel/changePwd.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modifierDemandeP</from-outcome>
+            <to-view-id>/pages/personnel/updateDemande.xhtml</to-view-id>
+            <redirect >/pages/personnel/updateDemande.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <to-view-id>/pages/administration/superUser.xhtml</to-view-id>
+        <navigation-case>
+            <from-outcome>superUser</from-outcome>
+            <to-view-id>/pages/administration/superUser.xhtml</to-view-id>
+            <redirect >/pages/administration/superUser.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <to-view-id>/pages/superUser/</to-view-id>
+        <navigation-case>
+            <from-outcome>newDemandeEchec</from-outcome>
+            <to-view-id>/pages/errors/newDemandeEchec.xhtml</to-view-id>
+            <redirect >/pages/errors/newDemandeEchec.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saveService</from-outcome>
+            <to-view-id>/pages/superUser/service/index.xhtml</to-view-id>
+            <redirect >/pages/superUser/service/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>savePersonnel</from-outcome>
+            <to-view-id>/pages/superUser/personnel/index.xhtml</to-view-id>
+            <redirect >/pages/superUser/personnel/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saveService</from-outcome>
+            <to-view-id>/pages/superUser/service/index.xhtml</to-view-id>
+            <redirect >/pages/superUser/service/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>stat</from-outcome>
+            <to-view-id>/pages/superUser/statistique/stat.xhtml</to-view-id>
+            <redirect >/pages/superUser/statistique/stat.xhtml</redirect>
+        </navigation-case>
+         <navigation-case>
+            <from-outcome>retourc</from-outcome>
+            <to-view-id>/pages/administration/comptableMatiere.xhtml</to-view-id>
+            <redirect >/pages/administration/comptableMatiere.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>retourch</from-outcome>
+            <to-view-id>/pages/administration/chargerMaintenance.xhtml</to-view-id>
+            <redirect >/pages/administration/chargerMaintenance.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>retourp</from-outcome>
+            <to-view-id>/pages/administration/personnel.xhtml</to-view-id>
+            <redirect >/pages/administration/personnel.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>retours</from-outcome>
+            <to-view-id>/pages/administration/superUser.xhtml</to-view-id>
+            <redirect >/pages/administration/superUser.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saveLogiciel</from-outcome>
+            <to-view-id>/pages/superUser/magazin/logiciel/index.xhtml</to-view-id>
+            <redirect >/pages/superUser/magazin/logiciel/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>newLoginOK</from-outcome>
+            <to-view-id>/pages/superUser/personnel/pwdPersonnel.xhtml</to-view-id>
+            <redirect >/pages/superUser/personnel/pwdPersonnel.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saveMateriel</from-outcome>
+            <to-view-id>/pages/superUser/magazin/materiel/index.xhtml</to-view-id>
+            <redirect >/pages/superUser/magazin/materiel/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>stock</from-outcome>
+            <to-view-id>/pages/superUser/magazin/stock/index.xhtml</to-view-id>
+            <redirect >/pages/superUser/magazin/stock/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saveDemande</from-outcome>
+            <to-view-id>/pages/superUser/listDemande.xhtml</to-view-id>
+            <redirect >/pages/superUser/listDemande.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>validDemandeMat</from-outcome>
+            <to-view-id>/pages/superUser/validDemandeMat.xhtml</to-view-id>
+            <redirect >/pages/superUser/validDemandeMat.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saveConsultation</from-outcome>
+            <to-view-id>/pages/superUser/saveConsultation.xhtml</to-view-id>
+            <redirect >/pages/superUser/saveConsultation.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modifierPersonnel</from-outcome>
+            <to-view-id>/pages/superUser/updatePersonnel.xhtml</to-view-id>
+            <redirect >/pages/superUser/updatePersonnel.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>panne</from-outcome>
+            <to-view-id>/pages/superUser/panne/index.xhtml</to-view-id>
+            <redirect >/pages/superUser/panne/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>deletePersonnel</from-outcome>
+            <to-view-id>/pages/superUser/personnel/index.xhtml</to-view-id>
+            <redirect>/pages/superUser/personnel/index.xhtml</redirect>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>modifierReparation</from-outcome>
+            <to-view-id>/pages/reparation/updateReparation.xhtml</to-view-id>
+            <redirect >/pages/reparation/updateReparation.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modifierSoins</from-outcome>
+            <to-view-id>/pages/superUser/updateSoins.xhtml</to-view-id>
+            <redirect >/pages/superUser/updateSoins.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modifierConsultation</from-outcome>
+            <to-view-id>/pages/superUser/updateConsultation.xhtml</to-view-id>
+            <redirect >/pages/superUser/updateConsultation.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modifierSoins</from-outcome>
+            <to-view-id>/pages/superUser/updateSoins.xhtml</to-view-id>
+            <redirect >/pages/superUser/updateSoins.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modifierDemandeS</from-outcome>
+            <to-view-id>/pages/superUser/updateDemande.xhtml</to-view-id>
+            <redirect >/pages/superUser/updateDemande.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modifierAlerteDemande</from-outcome>
+            <to-view-id>/pages/alerte/alerteDemande.xhtml</to-view-id>
+            <redirect >/pages/alerte/alerteDemande.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <to-view-id>/pages/administration/superUser.xhtml</to-view-id>
+        <navigation-case>
+            <from-outcome>superUser</from-outcome>
+            <to-view-id>/pages/administration/superUser.xhtml</to-view-id>
+            <redirect >/pages/administration/superUser.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>qteInsuffissante</from-outcome>
+            <to-view-id>/pages/alerte/qte.xhtml</to-view-id>
+            <redirect >/pages/alerte/qte.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <to-view-id>/pages/chargerMaintenance/</to-view-id>
+        <navigation-case>
+            <from-outcome>newLoginOK</from-outcome>
+            <to-view-id>/pages/chargerMaintenance/changePwd.xhtml</to-view-id>
+            <redirect >/pages/chargerMaintenance/changePwd.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>panne</from-outcome>
+            <to-view-id>/pages/chargerMaintenance/panne/index.xhtml</to-view-id>
+            <redirect >/pages/chargerMaintenance/panne/index.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>alerteReparation</from-outcome>
+            <to-view-id>/pages/alerte/alerteReparation.xhtml</to-view-id>
+            <redirect >/pages/alerte/alerteReparation.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>deleteReparation</from-outcome>
+            <to-view-id>/pages/chargerMaintenance/listReparation.xhtml</to-view-id>
+            <redirect>/pages/chargerMaintenance/listReparation.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modifierDemandeCh</from-outcome>
+            <to-view-id>/pages/chargerMaintenance/updateDemande.xhtml</to-view-id>
+            <redirect >/pages/chargerMaintenance/updateDemande.xhtml</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saveDemande</from-outcome>
+            <to-view-id>/pages/chargerMaintenance/listDemande.xhtml</to-view-id>
+            <redirect >/pages/chargerMaintenance/listDemande.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+</faces-config>

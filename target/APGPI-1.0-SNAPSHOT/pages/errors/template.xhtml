@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view locale="#{changeLocale.locale}">
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link href="../../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+            <link rel="shortcut icon" type="image/png" href="../../resources/images/sigle1.PNG" />
+            <title>#{msg['iden_titre']}</title>
+        </h:head>
+
+        <h:body>
+            <div id="top">
+                <p:accordionPanel dynamic="true" >
+                    <p:tab title="reduire">
+                        <div style="text-align: center;  "  >
+                            <p:graphicImage value="/resources/images/sigle.PNG" alt="entete" width="70%" height="90" /> 
+                        </div>
+                    </p:tab>
+                </p:accordionPanel>
+                <table width="95%"><tr><td>
+                            <h:form>
+                                <h:panelGrid columns="2">
+                                    <h:commandLink value="#{msg['welcome.langue1']}" action="#{changeLocale.setFrenchLocale}"/>
+                                    <h:commandLink value="#{msg['welcome.langue2']}" action="#{changeLocale.setEnglishLocale}"/>
+                                </h:panelGrid>
+                            </h:form>
+                        </td><td>
+                        </td></tr>
+                </table>
+            </div>
+
+            <div id="login">
+                <ui:insert name="content"></ui:insert>
+            </div>
+
+            <div id="bottom">
+                #{msg['iden_droit']}
+                <div style="text-align: right;  "  >
+                    <h:graphicImage  url="/resources/images/sigle.PNG" height="10%" width="10%"/>
+                </div>
+            </div>
+
+        </h:body>
+    </f:view>
+</html>

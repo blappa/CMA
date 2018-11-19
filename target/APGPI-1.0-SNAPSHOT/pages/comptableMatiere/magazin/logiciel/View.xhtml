@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+       <p:dialog id="LogicielViewDlg" widgetVar="LogicielViewDialog" modal="true" resizable="false" appendToBody="true" header="Profil logiciel">
+
+                <h:form id="LogicielViewForm">
+
+                    <h:panelGroup id="display" >
+                        <p:panelGrid columns="2" >
+                            <f:facet name="header">  
+                                <p:graphicImage value="/resources/images/sigle.PNG" style="width: 75%; height: 50%"/>  
+                            </f:facet>
+                            <h:outputText value="#{msg['iden_logiciel']}"/>
+                            <h:outputText value="#{mat.logiciel.nomLogiciel}" />
+
+                            <h:outputText value="#{msg['iden_editeur_logiciel']}"/>
+                            <h:outputText value="#{mat.logiciel.editeur}" />
+
+                            <h:outputText value="#{msg['iden_type_materiel']}"/>
+                            <h:outputText value="#{mat.logiciel.type}" />
+
+                            <h:outputText value="#{msg['iden_numero_serie']}"/>
+                            <h:outputText value="#{mat.logiciel.numSerie}" />
+
+                            <h:outputText value="licence"/>
+                            <h:outputText value="#{mat.logiciel.licence}" />
+
+                            <h:outputText value="#{msg['iden_date_install']}"/>
+                            <h:outputText value="#{mat.logiciel.dateInstallation}" />
+
+                            <h:outputText value="#{msg['iden_version_logiciel']}"/>
+                            <h:outputText value="#{mat.logiciel.version}" />
+
+                        </p:panelGrid>
+                        <p:commandButton value="Close" onclick="LogicielViewDialog.hide();"/>
+                    </h:panelGroup>
+
+                </h:form>
+
+            </p:dialog>
+    </ui:composition>
+
+</html>

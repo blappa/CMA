@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <h:form id="form1" >
+                <p:panel header="#{msg['iden_info_materiel']}" >
+                    <table>
+                        <tr>
+                            <td><h:outputText  value="#{msg['iden_nom']}"/></td>
+                            <td><p:selectOneMenu id="nom1" value="#{mat.idMateriel}" style="width: 500px;" >
+                                    <f:selectItems value="#{mat.materielList}" var="p" itemValue=" #{p.nomMateriel}" itemLabel="#{p.id}"/>
+                                </p:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel for="date"  value="#{msg['iden_date_materiel']}"/></td>
+                            <td><p:calendar id="date"  value="#{mat.affectationdemand.dateAffec}" pattern="yyyy-mm-dd" showButtonPanel="true" yearRange="c-10:c+10" maxdate="c" navigator="true" locale="fr"  style="width: 200px;" /></td>
+                        </tr>
+                    </table>
+                </p:panel>
+                <br></br>
+                <p:panel header="#{msg['iden_info_personnel']}">
+                    <table>
+                        <tr>
+                            <td><h:outputText   value="#{msg['iden_id4']}"/></td>
+                            <td><p:selectOneMenu id="per" value="#{mat.idPer}" style="width: 500px;" >
+                                    <f:selectItems value="#{admin.personnelList}" var="p" itemValue="  #{p.nom} #{p.prenom}" itemLabel="#{p.id}"/>
+                                </p:selectOneMenu>
+                            </td>
+                        </tr>
+                    </table>
+                </p:panel>
+                <p:commandButton value="#{msg['iden_menu_enregistrer_label']}" onclick="submit();" actionListener="#{mat.saveNewDemande}" ajax="true">
+                    <f:setPropertyActionListener target="#{mat.affectationdemand}" value="#{mat.affectationdemand}"/>
+                </p:commandButton>
+            </h:form>
+            <h:form id="form2" >
+                <p:dataTable id="pTable"  var="p"  value="#{mat.affectationdemandList}" paginator="true" rows="3" scrollable="false">
+
+                    <p:column  headerText="ID" filterBy="#{p.id}" filterMatchMode="startsWith">                                   
+                        <h:outputText value="#{p.id}" />
+                    </p:column>
+                    <p:column  filterBy="#{p.IDMateriel.nomMateriel}" filterMatchMode="startsWith" headerText="#{msg['iden_nom_materiel']}" >                                   
+                        <h:outputText value="#{p.IDMateriel.nomMateriel}" />
+                    </p:column>
+                    <p:column   headerText="#{msg['iden_date_materiel']}">                                    
+                        <h:outputText value="#{p.dateAffec}" />
+                    </p:column>
+                    <p:column  headerText="#{msg['iden_id4']}" >                                   
+                        <h:outputText value="#{p.IDPersonnel.nom} #{p.IDPersonnel.prenom}" />
+                    </p:column>
+                </p:dataTable>
+                <p:outputPanel autoUpdate="true" >                            
+                    <p:commandButton image="export" id="excel" value="Export as Excel" ajax="false"> 
+                        <p:dataExporter type="xls" target="pTable"  fileName="ListeDemende"/>
+                    </p:commandButton>
+                    <p:commandButton image="printer" id="prin" value="#{msg['iden_menu_print']}" ajax="false" >
+                        <p:printer  target="pTable"/>                                   
+                    </p:commandButton>
+                </p:outputPanel> 
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

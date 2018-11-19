@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <p:panel header="#{msg['iden_menu_personnel_login']}" >
+                <h:form  id="form">
+                    <table>
+                        <tr>
+                            <td><p:outputLabel for="login"  value="Ancien login"/></td>
+                            <td><p:inputText id="login" value="#{root.username_n}" /></td>
+
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel for="login1"  value="Nouveau login"/></td>
+                            <td><p:inputText id="login1" value="#{root.username}" /></td>
+
+                        </tr>
+                        <tr><td><p:outputLabel for="pwd"  value="#{msg['iden_pwd']}"/></td>
+                            <td>
+                                <p:password feedback="true" match="pwd2" id="pwd" value="#{root.pwd}"/>
+                            </td>
+                        </tr>
+                        <tr><td><p:outputLabel for="pwd2"  value="#{msg['iden_pwd_confirm']}"/></td>
+                            <td>
+                                <p:password id="pwd2" required="true" feedback="true" value="#{root.pwd}"/>
+                                <p:tooltip for="pwd2" value="#{msg['iden_pwd_confirm_info']}" showEvent="focus" />
+                            </td>
+                        </tr>
+                        <tr><td><p:commandButton value="#{msg['iden_oui']}" actionListener="#{root.changeLogin}" update="form,:growl"/></td>
+                            <td><p:commandButton value="#{msg['iden_non']}" onclick="cd.hide();" type="button" update="form"/></td>
+                        </tr>
+                    </table> 
+                </h:form>  
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

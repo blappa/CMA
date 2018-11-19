@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="MaterielCreateDlg" header="#{msg['iden_menu_enregistrer_label']} materiel" widgetVar="MaterielCreateDialog"  modal="true" resizable="false" appendToBody="true" showEffect="puff"    hideEffect="clip">         
+
+            <h:form id="MaterielCreateForm" > 
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" cellpadding="5">   
+                        <h:outputLabel value="Matériel" for="nom1"/>  
+                        <p:autoComplete id="nom1"  value="#{mat.materiel.nomMateriel}" required="true" requiredMessage="#{msg['iden_nom_msg']}"/>
+
+
+                        <h:outputLabel value="#{msg['iden_dateGarantie_materiel']}" for="dateGarantie1"/>  
+                        <p:calendar id="dateGarantie1"  value="#{mat.materiel.dateDebutGarantie}" required="true" pattern="dd/MM/yyyy" showOn="button"  style="width: 200px;" />
+
+                        <h:outputLabel value="Fournisseur" for="nomF1"/>  
+                        <p:autoComplete id="nomF1" value="#{mat.materiel.nomFournisseur}" />
+
+                        <h:outputLabel value="Duree garantie" for="duree1"/>  
+                        <p:autoComplete id="duree1" value="#{mat.materiel.dureeGarantie}" />
+
+                        <h:outputLabel value="#{msg['iden_marquee_materiel']}" for="marquee1"/>  
+                        <p:autoComplete id="marquee1" value="#{mat.materiel.marquee}" />
+
+                        <h:outputLabel value="#{msg['iden_serie_materiel']}" for="serie1"/>  
+                        <p:autoComplete id="serie1" value="#{mat.materiel.numSerie}" required="true" requiredMessage="#{msg['iden_nom_msg']}"/>
+
+                        <p:outputLabel for="type1"  value="#{msg['iden_type_materiel']}"/> 
+                        <p:selectOneMenu id="type1" value="#{mat.materiel.type}" style="width: 200px;">
+                            <f:selectItem itemLabel="Echangeable" itemValue="Echangeable"/>
+                            <f:selectItem itemLabel="Consommable" itemValue="Consommable"/>
+                            <f:selectItem itemLabel="Non echangeable" itemValue="Non echangeable"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="adresse1"  value="#{msg['iden_adresse_materiel']}"/> 
+                        <p:autoComplete id="adresse1" value="#{mat.materiel.adresseIP}" />
+
+                        <p:outputLabel for="stock1"  value="En stock"/>
+                        <p:selectOneMenu id="stock1" value="#{mat.materiel.enStock}" style="width: 200px;">
+                            <f:selectItem itemLabel="Oui" itemValue="OUI"/>
+                            <f:selectItem itemLabel="Non" itemValue="NON"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="date"  value="Date peremtion"/>
+                        <p:calendar id="date" value="#{mat.magazin.peremtion}"  pattern="dd/MM/yyyy" showOn="button"  style="width: 200px;" />
+
+                        <p:outputLabel for="qte"  value="#{msg['iden_quantite_materiel']}"/>
+                        <p:inputText id="qte" value="#{mat.magazin.stock}" />
+
+                        <p:commandButton value="#{msg['iden_menu_enregistrer_label']}"  actionListener="#{mat.saveNewMateriel}"   update="display,:MaterielListForm:pTable,:growl" oncomplete="MaterielCreateDialog.hide();" />
+                        <p:commandButton value="#{msg['iden_cancel']}" onclick="MaterielCreateDialog.hide();"/>
+                    </h:panelGrid>  
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>  
+
+    </ui:composition>
+
+</html>

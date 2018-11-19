@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DemandeListForm" >
+        <div id="datalist">
+            <p:dataTable id="pTable"  var="p" value="#{root.demandeTotal}"  rowKey="#{p.id}" scrollable="true" scrollHeight="470"
+                         selectionMode="single" selection="#{root.demande}"
+                         emptyMessage="aucun element"
+                         rowIndexVar="index"
+                         rowStyleClass="#{root.couleur(p)}"
+                         >
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="No"/>
+                    </f:facet>
+                    <h:outputText value="#{index+1}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="LISTE DES DEMANDES"/>
+                    </f:facet>
+                    <h:outputText value="#{p.materiel.nomMateriel} de marque #{p.materiel.marquee} et de serie #{p.materiel.numSerie} quantité demandée #{p.qte} le #{p.dateDemande} par #{p.personnel.nom} #{p.personnel.prenom}" />
+                </p:column>
+            </p:dataTable>
+        </div>
+        <div id="bouton">
+            <ul>  
+                <ol><p:commandButton icon="ui-icon-pencil" value="#{msg['iden_valider']} demande" title="Valider" update=":form:display" oncomplete="valideDialog.show();"/></ol>
+                <ol> <p:commandButton icon="ui-icon-trash" value="#{msg['iden_supprimer']}" title="#{msg['iden_menu_modifier_label']}"  actionListener="#{root.deleteDemande}" update="pTable"/></ol>
+            </ul>
+        </div>
+    </h:form>
+</ui:composition>

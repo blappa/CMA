@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd" 
+       xmlns:context="http://www.springframework.org/schema/context" >
+    
+    <!-- couches applicatives -->
+    
+    <bean id="autorisationDao" class="ig.projet.apgpi.DaoImpl.IAutorisationDaoImpl" />
+    <bean id="personnelDao" class="ig.projet.apgpi.DaoImpl.IPersonnelDaoImpl" />
+    <bean id="consultationDao" class="ig.projet.apgpi.DaoImpl.IConsultationDaoImpl" />
+    <bean id="materielDao" class="ig.projet.apgpi.DaoImpl.IMaterielDaoImpl" />
+    <bean id="loginDao" class="ig.projet.apgpi.DaoImpl.IAutorisationDaoImpl" />
+    <bean id="ievenementDao" class="ig.projet.apgpi.DaoImpl.IEvenementDaoImpl" />
+    <bean id="imagazinDao" class="ig.projet.apgpi.DaoImpl.IMagazinDaoImpl" />
+    <bean id="imaterielDao" class="ig.projet.apgpi.DaoImpl.IMaterielDaoImpl" />
+    <bean id="ipersonnelDao" class="ig.projet.apgpi.DaoImpl.IPersonnelDaoImpl" />
+    <bean id="stockDao" class="ig.projet.apgpi.DaoImpl.IMagazinDaoImpl" />
+    <bean id="ipanneDao" class="ig.projet.apgpi.DaoImpl.IPanneDaoImpl" />
+    <bean id="ireparationDao" class="ig.projet.apgpi.DaoImpl.IReparationDaoImpl" />
+    <bean id="iserviceDao" class="ig.projet.apgpi.DaoImpl.IServiceDaoImpl" />
+    <bean id="iaffectationDao" class="ig.projet.apgpi.DaoImpl.IAffectationDaoImpl"/>
+    <bean id="idemandeDao" class="ig.projet.apgpi.DaoImpl.IDemandeDaoImpl"/>
+    <bean id="iconsultationDao" class="ig.projet.apgpi.DaoImpl.IConsultationDaoImpl"/>
+     <bean id="isoinsDao" class="ig.projet.apgpi.DaoImpl.ISoinsDaoImpl"/>
+    
+    <!-- couche metier -->
+    
+    <bean id="serviceAdmin" class="ig.projet.apgpi.ServiceImpl.IServiceAutorisationImpl" >
+        <property name="autorisationDao" ref="autorisationDao" />
+        <property name="personnelDao" ref="personnelDao" />
+        <property name="consultationDao" ref="consultationDao" />        
+        <property name="materielDao" ref="materielDao"/>
+        <property name="loginDao" ref="loginDao" />
+    </bean>
+    
+    <bean id="serviceEven" class="ig.projet.apgpi.ServiceImpl.IServiceEvenementImpl" >
+        <property name="ievenementDao" ref="ievenementDao" />
+    </bean>
+    
+     <bean id="serviceSoins" class="ig.projet.apgpi.ServiceImpl.IServiceSoinsImpl" >
+        <property name="isoinsDao" ref="isoinsDao" />
+    </bean>
+    
+    <bean id="serviceConsultation" class="ig.projet.apgpi.ServiceImpl.IServiceConsultationImpl" >
+        <property name="iconsultationDao" ref="iconsultationDao" />
+    </bean>
+    
+    <bean id="serviceMagazin" class="ig.projet.apgpi.ServiceImpl.IServiceMagazinImpl" >
+        <property name="imagazinDao" ref="imagazinDao" />
+    </bean>
+    
+    <bean id="serviceMateriel" class="ig.projet.apgpi.ServiceImpl.IServiceMaterielImpl" >
+        <property name="imaterielDao" ref="imaterielDao" />
+        <property name="ipersonnelDao" ref="ipersonnelDao" />
+        <property name="imagazinDao" ref="imagazinDao" />
+        <property name="ievenementDao" ref="ievenementDao" />
+    </bean>
+    
+    <bean id="servicePanne" class="ig.projet.apgpi.ServiceImpl.IServicePanneImpl" >
+        <property name="ipanneDao" ref="ipanneDao" />
+    </bean>
+   
+    <bean id="servicePersonnel" class="ig.projet.apgpi.ServiceImpl.IServicePersonnelImpl" >
+        <property name="ipersonnelDao" ref="ipersonnelDao" />
+    </bean>
+   
+   
+    
+    <bean id="serviceReparation" class="ig.projet.apgpi.ServiceImpl.IServiceReparationImpl" >
+        <property name="ireparationDao" ref="ireparationDao" />
+    </bean>
+    
+   
+    <bean id="serviceService" class="ig.projet.apgpi.ServiceImpl.IServiceServiceImpl" >
+        <property name="iserviceDao" ref="iserviceDao" />
+    </bean>
+    
+    
+    <bean id="serviceDemande" class="ig.projet.apgpi.ServiceImpl.IServiceDemandeImpl" >
+        <property name="idemandeDao" ref="idemandeDao" />
+    </bean>
+    
+     <bean id="serviceAffectation" class="ig.projet.apgpi.ServiceImpl.IServiceAffectationImpl" >
+        <property name="iaffectationDao" ref="iaffectationDao" />
+    </bean>
+   
+    <!-- la source de donnéees DBCP -->
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+       
+        <property name="username" value="root"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="password" value=""/>
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/BaseDPI"/>-->
+        <property name="url" value="jdbc:mysql://localhost/BaseDPI"/>
+    
+    </bean>
+    
+    <!-- couche de persistance JPA -->
+    
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter">
+        
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                
+                <property name="showSql" value="true" />  
+              
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+                <property name="generateDdl" value="true" />
+            </bean>
+        </property>
+
+        <property name="loadTimeWeaver">
+            <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+
+        </property>
+    </bean>
+    
+    <!-- le gestionnaire de transactions -->
+    
+    <tx:annotation-driven transaction-manager="txManager" />
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+    
+    <!-- traduction des exceptions -->
+    
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+    
+    <!-- annotations de persistance -->
+    
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+    
+</beans>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <h:form>
+               <p:panel style="background-color: tomato; font: normal small-caps 180% fantasy;border-radius: 50px;">
+                     <h:outputText value="Erreur identification,  réessayez svp!!!  "></h:outputText>
+                </p:panel><br></br><br></br>
+                <table style=" font: normal small-caps 100% fantasy;">
+                    <tr>
+                        <td><p:outputLabel for="nom1"  value="#{msg['iden_login']}: *" /></td>
+                        <td><p:selectOneMenu id="nom1" value="#{admin.auto.login}" effect="explode" style="width: 200px;" >
+                                <f:selectItems value="#{admin.superUtilisateurList}" var="p" itemLabel="#{p.specialite}" itemValue="#{p.specialite}"/>
+                            </p:selectOneMenu></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel for="pwd1"  value="#{msg['iden_pwd']}: "/></td>
+                        <td><p:password id="pwd1" required="true" value="#{admin.auto.pwd}" style="width: 190px;" requiredMessage="#{msg['iden_check_pwd']}"/></td>  
+                        <p:message for="pwd1" />
+                        <p:tooltip for="pwd1" value="#{msg['iden_pwd_inst']}" showEffect="clip" hideEffect="explode" />
+                    </tr>
+                    <tr><td></td><td style="text-align: right;">
+                            <p:commandButton  ajax="false" value="Connexion" onclick="submit();"  action="#{admin.login}"  style=" color: royalblue; text-transform: inherit ">
+                                <f:setPropertyActionListener target="#{admin.currentUser}" value="#{admin.auto.personnel}"/>
+                            </p:commandButton>
+                        </td></tr>
+                </table>
+            </h:form>
+        </ui:define>
+        <ui:define name="bottom">
+            #{msg['iden_droit']}
+            <div style="text-align: right;  "  >
+                <h:graphicImage  url="/resources/images/sigle.PNG" height="10%" width="10%"/>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PanneEditDlg" header="Mise à jour" widgetVar="PanneEditDialog" modal="true" appendToBody="true" showEffect="clip" hideEffect="fold" height="400" resizable="false">
+            <h:form id="PanneEditForm">
+                <h:panelGroup id="display" >
+                    <h:panelGrid rendered="#{mat.panne != null}" columns="2" cellpadding="5">
+                        <p:outputLabel for="nom"  value="Panne"/>
+                        <p:selectOneMenu id="nom" value="#{mat.panne.nomPanne}" style="width: 200px;">
+                            <f:selectItem itemLabel="MATERIEL" itemValue="MATERIEL"/>
+                            <f:selectItem itemLabel="LOGICIEL" itemValue="LOGICIEL"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="nomM"  value="#{msg['iden_serie_materiel']}"/>
+                        <p:inputText id="nomM"  value="#{mat.panne.IDMateriel.numSerie}" style="width: 200px;"/>
+                        
+                        
+                        <p:outputLabel for="date"  value="Date"/>
+                        <p:calendar id="date"  value="#{mat.panne.datePanne}" pattern="dd/MM/yyyy" showOn="button"  style="width: 200px;" />
+
+                        <p:outputLabel for="obs"  value="#{msg['iden_obs']}"/>
+                        <p:inputTextarea id="obs" value="#{mat.panne.description}" style="width: 200px;" />
+
+                        <p:outputLabel for="code"  value="Code"/>
+                        <p:inputText id="code" value="#{mat.panne.code}" style="width: 200px;" required="true" requiredMessage="champs obligatoire"/>
+
+                        <p:panel visible="false">
+                            <p:inputText id="id" value="#{mat.panne.id}" />
+                        </p:panel>
+                    </h:panelGrid>
+                    <p:commandButton value="#{msg['iden_menu_enregistrer_label']}"   actionListener="#{mat.updatePanne}" update="display,:PanneListForm:pTable,:growl" oncomplete="PanneCreateDialog.hide();"/>
+                    <p:commandButton value="#{msg['iden_cancel']}" onclick="PanneEditDialog.hide();"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

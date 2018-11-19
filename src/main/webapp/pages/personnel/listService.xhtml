@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <h:form id="form4" >  
+                <h:panelGroup >
+                    <p:panel id="f">
+                       <!-- <ui:include src="../include/entete_cndt.xhtml"/>-->
+                        <br></br><br></br>
+                        <p:panel header="#{msg['iden_menu_service_afficher']}">
+                            <p:dataTable  value="#{root.serviceList}" var="p" id="pTable"
+                                          resizableColumns="false" selection="#{root.ser}" selectionMode="single" sortBy="#{p.nomService}"
+                                          rowKey="#{p.id}" widgetVar="pTable" emptyMessage="aucun element"
+                                          rowIndexVar="index"
+                                          >
+                                <p:column >
+                                    <f:facet name="header">
+                                        <h:outputText value="No"/>
+                                    </f:facet>
+                                    <h:outputText value="#{index+1}"/>
+                                </p:column>
+                                <p:column  filterBy="#{p.nomService}" filterMatchMode="startsWith"  headerText="Service" >                                   
+                                    <h:outputText value="#{p.nomService}" />                                      
+                                </p:column>
+                                <p:column headerText="Code">                                    
+                                    <h:outputText id="materiel" value="#{p.sigleService}" />                                       
+                                </p:column>
+                                <p:columnGroup type="footer">
+                                    <p:row>
+                                        <p:column colspan="7" footerText="TOTAL: "/>
+                                        <p:column colspan="2" footerText="#{root.serviceList.size()}"/>
+                                    </p:row>
+                                </p:columnGroup>
+                            </p:dataTable>
+                            <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retourp"/>
+                        </p:panel>
+                    </p:panel>
+                </h:panelGroup>
+
+            </h:form>  
+        </ui:define>
+    </ui:composition>
+</html>
+
+

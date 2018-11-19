@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PersonnelListForm" >
+        <div id="datalist">
+            <p:panel header="#{msg.iden_menu_personnel_afficher}">
+                <p:dataTable id="pTable"  var="p" value="#{root.personnelList}" rowKey="#{p.id}"
+                             selectionMode="single" selection="#{root.personnel}"
+                             paginator="true"
+                             rows="20"
+                             rowsPerPageTemplate="05,10,20"
+                             emptyMessage="aucun element"
+                             rowIndexVar="index"
+                             scrollable="false">
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column   filterBy="#{p.nom}" filterMatchMode="startsWith"> 
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_nom']}"/>
+                        </f:facet>
+                        <h:outputText value="#{p.nom}" />                                      
+                    </p:column>
+                    <p:column filterBy="#{p.prenom}" filterMatchMode="startsWith"> 
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_prenom']}"/>
+                        </f:facet>
+                        <h:outputText id="prenom" value="#{p.prenom}" />                                       
+                    </p:column>
+                    <p:column  filterBy="#{p.cni}" filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_cni']}"/>
+                        </f:facet>
+                        <h:outputText id="cni" value="#{p.cni}" />                                       
+                    </p:column>
+                    <p:column  > 
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_specialite']}"/>
+                        </f:facet>
+                        <h:outputText value="#{p.specialite}" />                                       
+                    </p:column>
+                    <p:column > 
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_service']}"/>
+                        </f:facet>
+                        <h:outputText value="#{p.service.nomService}" />                                       
+                    </p:column>
+                    <p:column > 
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['iden_mail']}"/>
+                        </f:facet>
+                        <h:outputText value="#{p.email}" />                                       
+                    </p:column>
+
+                </p:dataTable>
+            </p:panel>
+        </div>
+        <div id="bouton">
+            <ul>
+                <ol> <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{msg.iden_menu_ajouter_label}"   oncomplete="PersonnelCreateDialog.show()"/></ol>
+                <ol>  <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{msg.iden_menu_afficher_label}" update=":PersonnelViewForm" oncomplete="PersonnelViewDialog.show()" disabled="#{empty root.personnel}"/></ol>
+                <ol>   <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{msg.iden_menu_modifier_label}" update=":PersonnelEditForm:display" oncomplete="PersonnelEditDialog.show()" disabled="#{empty root.personnel}"/></ol>
+                <ol>   <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{msg.iden_supprimer}" action="#{root.deletePersonnelId()}" update="pTable" disabled="#{empty root.personnel}"/> </ol>
+                <ol> <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retours"/></ol>  
+            </ul>
+        </div>
+    </h:form>
+
+</ui:composition>

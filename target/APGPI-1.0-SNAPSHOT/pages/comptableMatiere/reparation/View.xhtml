@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ReparationViewDlg" widgetVar="ReparationViewDialog" modal="true" appendToBody="true" resizable="false" showEffect="clip" hideEffect="fold" header="Profil">
+
+            <h:form id="ReparationViewForm">
+
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2" > 
+                        <h:outputText  value="Materiel"/>
+                        <h:outputText value="#{mat.reparation.materiel.nomMateriel} #{mat.reparation.materiel.marquee}"/>
+
+                        <h:outputText value="Date"/>
+                        <h:outputText value="#{mat.reparation.dateReparation}" />
+
+                        <h:outputText  value="Description"/>
+                        <h:outputText value="#{mat.reparation.description}" style="width: 200px;" />
+
+                    </p:panelGrid>
+                    <p:commandButton value="Close" onclick="ReparationViewDialog.hide();"/>
+                </h:panelGroup>
+
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

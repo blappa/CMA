@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE xhtml PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <h:form id="form4" >
+                <p:dataTable id="pTable" var="p" value="#{mat.evenementList}"  paginator="true" rows="15" scrollable="false" 
+                             emptyMessage="aucun element"
+                             rowIndexVar="index"
+                             >
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column  filterBy="#{p.nomEven}" filterMatchMode="startsWith"  headerText="#{msg['iden_nom_enenement']}" >                                   
+                        <h:outputText value="#{p.nomEven}" />                                      
+                    </p:column>
+                    <p:column headerText="Materiel">                                    
+                        <h:outputText id="espece" value="#{p.materiel.nomMateriel}" />                                       
+                    </p:column>
+                    <p:column headerText="#{msg['iden_nbre_jour_evenement']}">                                    
+                        <h:outputText id="nbr" value="#{p.nbreJour}" />                                       
+                    </p:column>
+                    <p:columnGroup type="footer">
+                        <p:row>
+                            <p:column colspan="7" footerText="TOTAL: "/>
+                            <p:column colspan="2" footerText="#{mat.evenementList.size()}"/>
+                        </p:row>
+                    </p:columnGroup>
+                </p:dataTable>
+                <p:outputPanel autoUpdate="true" >                            
+                    <p:commandButton image="export" id="excel" value="Export as Excel" ajax="false"> 
+                        <p:dataExporter type="xls" target="pTable" fileName="ListeStock"/>
+                    </p:commandButton>
+                    <p:commandButton image="printer" id="prin" value="#{msg['iden_menu_print']}" ajax="false" >
+                        <p:printer  target="pTable"/>                                   
+                    </p:commandButton>
+                    <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retourp"/>
+                </p:outputPanel>
+            </h:form> 
+        </ui:define>
+    </ui:composition>
+</html>
+
+
+

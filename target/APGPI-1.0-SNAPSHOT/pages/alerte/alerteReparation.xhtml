@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:view locale="#{changeLocale.locale}">
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link href="../resources/css/default.css" rel="stylesheet" type="text/css" />
+            <link href="../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+            <link href="../resources/css/jsfcrud.css" rel="stylesheet" type="text/css" />
+            <link rel="shortcut icon" type="image/png" href="../resources/images/sigle.PNG" />
+            <title>#{msg['iden_titre']}</title>
+        </h:head>
+
+        <h:body>
+            <div id="content" class="right_content">
+                <div style="text-align: center;  "  >
+                    <h:graphicImage  url="../resources/images/sigle.PNG" height="60%" width="30%"/>
+                </div>
+
+                <p:panel>
+                    <table width="90%"><tr><td>
+                                <h:form id="formulaire">
+                                    <h:panelGrid columns="2">
+                                        <h:commandLink value="#{msg['welcome.langue1']}" action="#{changeLocale.setFrenchLocale}"/>
+                                        <h:commandLink value="#{msg['welcome.langue2']}" action="#{changeLocale.setEnglishLocale}"/>
+                                    </h:panelGrid>
+                                </h:form>
+                            </td><td>
+                                <h:form >
+                                    <p:menubar style=" width: 90px; height: 30px; float: right">
+                                        <p:menuitem title="#{msg['iden_deconnection']}" value="#{msg['iden_deconnection']}" url="../index.xhtml" onclick="fmenu.submit();"></p:menuitem>
+                                    </p:menubar>
+                                </h:form>
+                            </td></tr>
+                    </table>
+                </p:panel> 
+                <div id="msgIdenification">
+
+                    <p:panel style="background-color: activeborder;font:bold medium fantasy;" >
+                        <a>
+                            <br></br><br></br><br></br>
+                            MENU
+                            <ui:include src="../include/menuMaintenance.xhtml"/>
+                            <br></br><br></br> 
+                            <div style="float: left; margin-left: 5%;">
+                                <p:panel header="#{msg['iden_menu_enrg_reparation']}">
+                                    <p:panel style="background-color: activeborder;font:bold medium fantasy;" >
+                                        <h:form id="form3" > 
+                                            <table>
+
+                                                <tr>
+                                                    <td><p:outputLabel for="materiel"  value="Materiel"/></td>
+                                                    <td><p:selectOneMenu id="materiel" value="#{mat.reparation.nomMateriel}" style="width: 500px;" >
+                                                            <f:selectItems value="#{root.materielList}" var="p" itemLabel="#{p.id} #{p.nomMateriel} #{p.marquee}" itemValue="#{p.id} #{p.nomMateriel} #{p.marquee}"/>
+                                                        </p:selectOneMenu>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><p:outputLabel for="date"  value="Date"/></td>
+                                                    <td><p:calendar id="date"  value="#{mat.reparation.dateReparation}" pattern="yyyy-mm-dd" showButtonPanel="true" yearRange="c-10:c+10" maxdate="c" navigator="true" locale="fr"  style="width: 200px;" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><p:outputLabel for="reparateur"  value="#{msg['iden_nom_reparateur']}"/></td>
+                                                    <td><p:inputText id="reparateur" value="#{mat.reparation.nomReparateur}" />
+
+                                                    </td><td><p:message for="reparateur"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><p:outputLabel for="description"  value="Description"/></td>
+                                                    <td><p:inputTextarea id="description" value="#{mat.reparation.description}" style="width: 200px;" />
+                                                        <p:tooltip for="description" value="#{msg['iden_obs_info']}"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <br></br><br></br>
+                                            <div style="text-align: left;">
+                                                <p:commandButton value="#{msg['iden_menu_enregistrer_label']}"  onclick="submit();" action="#{mat.valideReparation}" ajax="true">
+                                                    <f:setPropertyActionListener target="#{mat.reparation}" value="#{mat.reparation}"/>
+                                                </p:commandButton>
+                                            </div>
+
+                                        </h:form>
+                                    </p:panel>
+                                </p:panel>
+                            </div>
+                            <br></br><br></br><br></br><br></br><br></br><br></br>
+                        </a>
+                        <h:form >
+                            <p:menubar style="background-color: transparent;float: right" >
+                                <p:menuitem title="#{msg['iden_retour']}" value="#{msg['iden_retour']}" url="../index.xhtml" onclick="fmenu.submit();"></p:menuitem>
+                            </p:menubar>
+                        </h:form>
+                        <br></br><br></br><br></br><br></br><br></br><br></br><br></br> <br></br><br></br><br></br><br></br><br></br><br></br>
+                    </p:panel>
+
+                </div>
+            </div>
+        </h:body>
+    </f:view>
+</html>
+
+

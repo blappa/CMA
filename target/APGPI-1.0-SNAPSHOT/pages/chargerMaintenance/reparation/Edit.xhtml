@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReparationEditDlg" header="Mise à jour" widgetVar="ReparationEditDialog" modal="true" appendToBody="true" showEffect="clip" hideEffect="fold"  resizable="false">
+            <h:form id="ReparationEditForm">
+                <h:panelGroup id="display" >
+                    <h:panelGrid rendered="#{mat.reparation != null}" columns="2" cellpadding="2">
+                       <p:outputLabel for="designation"  value="Designation"/>
+                        <p:selectOneMenu id="designation" value="#{mat.idMateriel}" required="true" requiredMessage="#{msg['iden_nom_msg']}"  style="width: 250px;" >
+                            <f:selectItems value="#{root.materielList}" var="p" itemLabel="#{p.nomMateriel} #{p.marquee}" itemValue="#{p.id}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="date"  value="Date"/>
+                        <p:calendar id="date"  value="#{mat.reparation.dateReparation}" pattern="dd/MM/yyyy" showOn="button"  style="width: 200px;" />
+                       
+                        <p:outputLabel for="description"  value="Description"/>
+                        <p:inputTextarea id="description" value="#{mat.reparation.description}" style="width: 250px;" />
+
+                        <p:panel visible="false">
+                            <p:inputText id="id" value="#{mat.reparation.id}" />
+                        </p:panel>
+                    </h:panelGrid>
+                    <p:commandButton value="#{msg['iden_menu_enregistrer_label']}"   actionListener="#{mat.updateReparation}" update="display,:ReparationListForm:pTable,:growl" oncomplete="ReparationEditDialog.hide();"/>
+                    <p:commandButton value="#{msg['iden_cancel']}" onclick="ReparationEditDialog.hide();"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

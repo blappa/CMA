@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpanne" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5cb4cd87-e899-4333-9fb4-b538637d8e84">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nomPanne" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="datePanne" class="java.util.Date"/>
+	<field name="code" class="java.lang.String"/>
+	<group name="Group1">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="215">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="173" width="595" height="37" backcolor="#006699" uuid="aa38f592-4dc9-45a6-844b-f85e4279a4e0"/>
+				<staticText>
+					<reportElement x="20" y="11" width="154" height="23" forecolor="#FFFFFF" uuid="1853ee87-5519-43f7-b2f0-5e93c3714a4f"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[LISTE DES PANNES]]></text>
+				</staticText>
+			</frame>
+			<image>
+				<reportElement x="0" y="0" width="555" height="173" uuid="962952eb-0114-4953-900e-ea9e4001743f"/>
+				<imageExpression><![CDATA["/home/lappa/NetBeansProjects/spring security/a/GESTION-PI-1.5/src/main/webapp/print/entete_cndt.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="6295f174-d435-4cae-90ef-3a65edfbb392"/>
+			</line>
+			<staticText>
+				<reportElement x="422" y="2" width="100" height="20" uuid="d679f8fd-8346-4d65-84bf-7ca7794759e9"/>
+				<text><![CDATA[CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="146" y="2" width="100" height="20" uuid="cb89a5e4-e336-4a0a-b1f2-3ec6482542b3"/>
+				<text><![CDATA[DESCRIPTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="bbe58ff9-f228-419d-84d5-02a8480c906b"/>
+				<text><![CDATA[TYPE PANNE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="2" width="100" height="20" uuid="e1238a7c-3767-4ace-96c7-b0ad6bef0afb"/>
+				<text><![CDATA[DATE SURVENUE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26">
+			<textField>
+				<reportElement x="422" y="0" width="100" height="20" uuid="ad7334b2-4f11-4296-9fc6-fb92b8db7eb7"/>
+				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="0" width="100" height="20" uuid="2f9801ac-4903-4f51-ba53-1f0e4f351cbf"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="2eee024c-279b-4d10-86bb-bdcfd593ed79"/>
+				<textFieldExpression><![CDATA[$F{nomPanne}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="292" y="0" width="100" height="20" uuid="365cc803-cf6d-4d70-9b91-ec9b731572f2"/>
+				<textFieldExpression><![CDATA[$F{datePanne}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="e5bac282-89c8-45a7-9c37-44ffb243d726"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="741f3558-33bf-422f-bd78-b5e4ba7d2fb6"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="64d7d8a7-5c6c-41a0-8ad2-9f55b1a1ffce"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonnelCmptDlg" header="Mise à jour" widgetVar="PersonnelCmptDialog" modal="true" appendToBody="true" showEffect="clip" hideEffect="fold" height="130" resizable="false">
+
+            <h:form id="PersonnelCmptForm">
+                <h:panelGroup id="display" >
+                    <h:panelGrid rendered="#{root.personnel != null}" columns="2" cellpadding="3">
+                        <p:outputLabel for="actif"  value="ETAT COMPTE"/>
+                        <p:selectOneMenu id="actif" value="#{root.status}" style="width: 205px;">
+                            <f:selectItem itemLabel="ACTIF" itemValue="1"/>
+                            <f:selectItem itemLabel="BLOQUEE" itemValue="0"/>
+                        </p:selectOneMenu>
+
+                        <p:panel visible="false">
+                            <p:inputText id="id" value="#{root.nlogin.idLogin}" />
+                        </p:panel>
+
+                    </h:panelGrid>
+                    <p:commandButton value="#{msg['iden_menu_enregistrer_label']}" actionListener="#{root.modifierCompte}"  update=":data:table,:growl" oncomplete="PersonnelCmptDialog.hide();"/>
+                    <p:commandButton value="#{msg['iden_cancel']}" onclick="PersonnelCmptDialog.hide();"/>
+
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

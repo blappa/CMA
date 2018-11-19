@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ConsultationCreateDlg" header="Modal Dialog" widgetVar="ConsultationCreateDialog"  modal="true" resizable="false" appendToBody="true" showEffect="puff"    hideEffect="clip">
+            <h:form id="ConsultationCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <p:outputLabel for="materiel"  value="Materiel"/>
+                        <p:selectOneMenu id="materiel" value="#{mat.idMateriel}" style="width: 205px;" >
+                            <f:selectItems value="#{root.materielList}" var="p" itemLabel="#{p.nomMateriel} #{p.marquee}" itemValue="#{p.id}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="diagnostic"  value="#{msg['iden_diagnostic']}"/>
+                        <p:inputTextarea id="diagnostic" value="#{mat.cons.diagnostic}" style="width: 205px;"/>
+
+                        <p:outputLabel for="traitement"  value="#{msg['iden_traitement']}"/>
+                        <p:selectOneMenu id="traitement" value="#{mat.cons.traitement}" style="width: 205px;">
+                            <f:selectItem itemLabel="Oui" itemValue="Oui"/>
+                            <f:selectItem itemLabel="Non" itemValue="Non"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="prix"  value="#{msg['iden_prix']}" style="width: 220px;"/>
+                        <p:inputText id="prix" value="#{mat.cons.prix}" />
+
+
+                        <p:commandButton value="#{msg['iden_menu_ajouter_label']}"   actionListener="#{mat.saveConsultation}" update="display,:ConsultationListForm:pTable,:growl" oncomplete="ConsultationCreateDialog.hide()"/>
+
+                        <p:commandButton value="Cancel" onclick="ConsultationCreateDialog.hide();"/>
+                    </h:panelGrid>  
+                </h:panelGroup>
+
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

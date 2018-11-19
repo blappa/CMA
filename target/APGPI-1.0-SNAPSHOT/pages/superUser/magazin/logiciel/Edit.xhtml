@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LogicielEditDlg" header="Mise à jour" widgetVar="LogicielEditDialog" modal="true" resizable="false" appendToBody="true" showEffect="puff"    hideEffect="clip">
+
+            <h:form id="LogicielEditForm" > 
+                <h:panelGroup id="display" >
+                    <h:panelGrid rendered="#{mat.logiciel != null}" columns="2" cellpadding="5">
+
+                        <p:outputLabel for="nom"  value="#{msg['iden_logiciel']}"/>
+                        <p:inputText id="nom" accesskey="enter"  value="#{mat.logiciel.nomLogiciel}"  required="true" requiredMessage="#{msg['iden_nom_msg']}"/>
+
+                        <p:outputLabel for="editeur"  value="#{msg['iden_editeur_logiciel']}"/>
+                        <p:inputText id="editeur" accesskey="enter"  value="#{mat.logiciel.editeur}"  />
+
+                        <p:outputLabel for="type1"  value="#{msg['iden_type_materiel']}"/>
+                        <p:selectOneMenu id="type1" value="#{mat.logiciel.type}" style="width: 200px;">
+                            <f:selectItem itemLabel="DOS" itemValue="DOS"/>
+                            <f:selectItem itemLabel="LINUX" itemValue="Linux"/>
+                            <f:selectItem itemLabel="MAC OS" itemValue="MAC OS"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="num"  value="#{msg['iden_numero_serie']}"/>
+                        <p:inputText id="num"   value="#{mat.logiciel.numSerie}" />
+
+                        <p:outputLabel  for="licence" value="licence"/>
+                        <p:inputText id="licence" value="#{mat.logiciel.licence}" />
+
+                        <p:outputLabel  for="date" value="#{msg['iden_date_install']}"/>
+                        <p:calendar id="date"  value="#{mat.logiciel.dateInstallation}" pattern="dd/MM/yyyy" showOn="button"  style="width: 200px;" />
+
+                        <p:outputLabel  for="version" value="#{msg['iden_version_logiciel']}"/>
+                        <p:inputText id="version" value="#{mat.logiciel.version}" required="true" requiredMessage="#{msg['iden_nom_msg']}"/>
+
+                        <p:panel visible="false">
+                            <p:inputText id="id" value="#{mat.logiciel.id}" />
+                        </p:panel>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{mat.updateMateriel}" value="#{msg['iden_menu_enregistrer_label']}"  update="display,:LogicielListForm:pTable,:growl" oncomplete="LogicielCreateDialog.hide();"/>
+                    <p:commandButton value="Cancel" onclick="MaterielEditDialog.hide();"/>
+
+                </h:panelGroup>
+            </h:form>
+        </p:dialog> 
+    </ui:composition>
+
+</html>

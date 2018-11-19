@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE xhtml PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="../template.xhtml">
+        <ui:define name="content">
+            <h:form id="data">
+                <div id="datalist">
+                    <p:dataTable id="table"  var="p"  value="#{root.listAutorisations}" rowKey="#{p.idLogin}"
+                                 selectionMode="single" selection="#{root.nlogin}"
+                                 paginator="true"
+                                 rows="20"
+                                 rowsPerPageTemplate="05,10,20"
+                                 emptyMessage="aucun element"
+                                 rowIndexVar="index"
+                                 scrollable="false"
+                                 >
+
+                        <p:column >
+                            <f:facet name="header">
+                                <h:outputText value="No"/>
+                            </f:facet>
+                            <h:outputText value="#{index+1}"/>
+                        </p:column>
+                        <p:column  filterBy="#{p.personnel.nom}" filterMatchMode="startsWith"  headerText="#{msg['iden_nom']}" >                                   
+                            <h:outputText value="#{p.personnel.nom} #{p.personnel.prenom}" />                                      
+                        </p:column>
+                        <p:column headerText="#{msg['iden_login']}" filterBy="#{p.username}" filterMatchMode="startsWith">                                    
+                            <h:outputText id="type" value="#{p.username}" />                                       
+                        </p:column>
+                        <p:column headerText="Groupe">                                    
+                            <h:outputText id="groupe" value="#{p.authority}" />                                       
+                        </p:column>
+                        <p:column headerText="Etat compte">                                    
+                            <h:outputText id="etat" value="#{p.anabled}" />                                       
+                        </p:column>
+                        <p:columnGroup type="footer">
+                            <p:row>
+                                <p:column colspan="7" footerText="TOTAL: "/>
+                                <p:column colspan="2" footerText="#{mat.soinsList.size()}"/>
+                            </p:row>
+                        </p:columnGroup>
+                    </p:dataTable>
+                </div>
+                <div id="bouton">
+                    <ul>
+                        <ol>   <p:commandButton id="statusButton"   value="ETAT COMPTE" update=":PersonnelCmptForm:display" oncomplete="PersonnelCmptDialog.show()"/> </ol>
+                        <ol> <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retours"/></ol> 
+                    </ul>
+                </div>
+            </h:form>  
+            <ui:include src="pwdPersonnel.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</html>
+
+
+

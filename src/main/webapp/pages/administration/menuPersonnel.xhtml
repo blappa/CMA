@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE xhtml PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition>
+        <p:panel id="accordion">
+            <p:accordionPanel dynamic="true" >
+                <p:tab title="reduire">
+                    <div style="text-align: center;  "  >
+                        <div style="font: normal small-caps 200% fantasy  ;" align="center" >APPLICATION DE GESTION D'UN PARC INFORMATIQUE </div>
+                        <!--                        <p:graphicImage value="/resources/images/sigle.PNG" alt="entete" width="55%" height="50"/> -->
+                    </div>
+                </p:tab>
+            </p:accordionPanel>
+        </p:panel>
+        <table width="95%"><tr><td>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:commandLink value="#{msg['welcome.langue1']}" action="#{changeLocale.setFrenchLocale}"/>
+                            <h:commandLink value="#{msg['welcome.langue2']}" action="#{changeLocale.setEnglishLocale}"/>
+                        </h:panelGrid>
+                    </h:form>
+                </td>
+                <td>
+                    <h3>#{msg.iden_accueil} ${username}</h3>
+                </td>
+                <td>
+                    <h:form >
+                        <p:menubar style=" width: 120px; height: 30px; float: right;border-radius: 20%">
+                            <p:menuitem title="#{msg['iden_deconnection']}" value="#{msg['iden_deconnection']}" url="/j_spring_security_logout"  onclick="fmenu.submit();"></p:menuitem>
+                        </p:menubar>
+                    </h:form>
+                </td></tr>
+        </table>
+        <h:form>
+            <p:menubar style="background-color: transparent;" >
+                <p:submenu id="personnel" label="#{msg['iden_menu_changePWD']}" >
+                    <p:menuitem title="#{msg['iden_menu_change_pwd']}" value="#{msg['iden_menu_change_pwd_label']}" url="/pages/personnel/changePwd.xhtml" onclick="fmenu.submit();"></p:menuitem>
+                </p:submenu>
+                <p:submenu id="service" label="#{msg['iden_menu_service']}" >
+                    <p:menuitem title="#{msg['iden_menu_service_afficher']}" value="#{msg['iden_menu_service_afficher_all_label']}" url="/pages/personnel/listService.xhtml" onclick="fmenu.submit();"></p:menuitem>
+                </p:submenu>
+                <p:submenu id="evenement" label="#{msg['iden_menu_evenement']}" >
+                    <p:menuitem title="#{msg['iden_menu_evenement_afficher']}" value="#{msg['iden_menu_afficher_label']}" url="/pages/personnel/listEvenement.xhtml" onclick="fmenu.submit();"></p:menuitem>
+                </p:submenu>
+                <p:submenu id="soins" label="#{msg['iden_menu_soins']}" >
+                    <p:menuitem title="#{msg['iden_menu_soins_afficher']}" value="#{msg['iden_menu_soins_afficher_all_label']}" url="/pages/personnel/listSoins.xhtml" onclick="fmenu.submit();"></p:menuitem>
+                </p:submenu>
+                <p:submenu label="#{msg['iden_menu_reparation']}" >
+                    <p:menuitem title="#{msg['iden_menu_reparation_afficher']}" value="#{msg['iden_menu_reparation_afficher_all_label']}" url="/pages/personnel/listReparation.xhtml" onclick="fmenu.submit();"></p:menuitem>
+                </p:submenu>
+
+                <p:submenu label="#{msg['iden_menu_consultation']}" >
+                    <p:menuitem title="#{msg['iden_menu_consultation_afficher']}" value="#{msg['iden_menu_consultation_afficher_all_label']}" url="/pages/personnel/listConsultation.xhtml" onclick="fmenu.submit();"></p:menuitem>
+                </p:submenu>
+
+                <p:menuitem id="bon_sortie"  title="#{msg['iden_menu_ajouter_label']}" value="#{msg['iden_menu_bon_sortie']}" url="/pages/personnel/demande/" onclick="fmenu.submit();"></p:menuitem>
+
+                <!--                <p:submenu id="aide" label="Aide ?" >
+                                    <p:menuitem title="aide" value="aide" url="/pages/administration/aides/aides.xhtml" onclick="fmenu.submit();"></p:menuitem>
+                                </p:submenu>-->
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+</html>
+
+
+

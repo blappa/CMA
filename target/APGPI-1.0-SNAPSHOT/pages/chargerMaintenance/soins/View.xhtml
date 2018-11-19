@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="SoinsViewDlg" widgetVar="SoinsViewDialog" modal="true" appendToBody="true" resizable="false" showEffect="clip" hideEffect="fold" header="Profil">
+
+            <h:form id="SoinsViewForm">
+
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2" > 
+                        <f:facet name="header">  
+                            <p:graphicImage value="/resources/images/sigle.PNG" style="width: 75%; height: 50%"/>  
+                        </f:facet>
+                        <h:outputText value="Designation"/>
+                        <h:outputText value="#{mat.soins.typeSoin}"/>
+
+                        <h:outputText value="#{msg['iden_type_soins']}"/>
+                        <h:outputText value ="#{mat.soins.typeSoin}"/>
+
+                        <h:outputText  value="#{msg['iden_date_Soins']}"/>
+                        <h:outputText value="#{mat.soins.dateDuJour}"  />
+
+                    </p:panelGrid>
+                    <p:commandButton value="Close" onclick="SoinsViewDialog.hide();"/>
+                </h:panelGroup>
+
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

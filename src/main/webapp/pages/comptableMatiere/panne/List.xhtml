@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PanneListForm" >
+        <div id="datalist">
+            <p:dataTable id="pTable"  var="p" value="#{mat.panneList}" rowKey="#{p.id}"
+                         selectionMode="single" selection="#{mat.panne}"
+                         paginator="true"
+                         rows="20"
+                         rowsPerPageTemplate="05,10,20"
+                         emptyMessage="aucun element"
+                         rowIndexVar="index"
+                         scrollable="false">
+
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="No"/>
+                    </f:facet>
+                    <h:outputText value="#{index+1}"/>
+                </p:column>
+                <p:column filterBy="#{p.nomPanne}" filterMatchMode="startsWith" headerText="#{msg['iden_menu_panne']}" >                                   
+                    <h:outputText value="#{p.nomPanne}" />
+                </p:column>
+                <p:column  headerText="Materiel" >                                   
+                    <h:outputText value="#{p.IDMateriel.nomMateriel}" />
+                </p:column>
+                <p:column  headerText="Date:">                                  
+                    <h:outputText id="date" value="#{p.datePanne}" />                                       
+                </p:column>
+                <p:column  headerText="#{msg['iden_obs']}" 
+                           filterMatchMode="startsWith">                                   
+                    <h:outputText value="#{p.description}" />                                     
+                </p:column>
+                <p:column  headerText="Code:">                                  
+                    <h:outputText id="code" value="#{p.code}" />                                       
+                </p:column>
+            </p:dataTable>
+        </div>
+        <div id="bouton">
+            <ul>
+                <ol> <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{msg.iden_menu_ajouter_label}"   oncomplete="PanneCreateDialog.show();"/></ol>
+                <ol> <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{msg.iden_menu_afficher_label}" update=":PanneViewForm"  oncomplete="PanneViewDialog.show();"/></ol>
+                <ol> <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{msg.iden_menu_modifier_label}" update=":PanneEditForm:display"  oncomplete="PanneEditDialog.show();"/></ol>
+                <ol> <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{msg.iden_supprimer}"  actionListener="#{mat.deletePanne}"  update="pTable"/></ol>
+                <ol> <p:commandButton id="retourButton" value="#{msg['iden_retour']} menu principal" action="retourc"/></ol>  
+            </ul>
+        </div>
+    </h:form>
+</ui:composition>

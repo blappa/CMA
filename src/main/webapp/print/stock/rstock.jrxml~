@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rstock" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0091ea79-296c-4439-b26d-4feb75267ef5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="materiel" class="java.lang.Object"/>
+	<field name="peremtion" class="java.util.Date"/>
+	<field name="stock" class="java.lang.Long"/>
+	<group name="Group1">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="217">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="186" width="595" height="27" backcolor="#006699" uuid="2083b499-e310-4f67-b56b-8a19178fc505"/>
+				<staticText>
+					<reportElement x="20" y="0" width="147" height="23" forecolor="#FFFFFF" uuid="20c25918-a854-4c65-9b82-f4ad98ab8472"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[LISTE DE STOCK]]></text>
+				</staticText>
+			</frame>
+			<image>
+				<reportElement x="0" y="3" width="555" height="172" uuid="f388ed36-2e9d-4818-b22f-90111729cb43"/>
+				<imageExpression><![CDATA["/home/lappa/NetBeansProjects/spring security/a/GESTION-PI-1.5/src/main/webapp/print/entete_cndt.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="0eccac30-db2e-4f03-8b99-a892dfed9f18"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="1" width="100" height="20" forecolor="#2D74BD" uuid="88edee25-61c9-4e60-a4aa-31028452c8e3"/>
+				<text><![CDATA[MATERIEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="1" width="100" height="20" forecolor="#2D74BD" uuid="86f7a24d-6c24-4cec-ba8b-15e884e89a2f"/>
+				<text><![CDATA[PEREMTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="1" width="100" height="20" forecolor="#2D74BD" uuid="ce8a8677-d0e6-4e77-8151-0c77bdad55b4"/>
+				<text><![CDATA[STOCK]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="3c1d0135-6279-409f-8f7a-1a652850b4a0"/>
+			</line>
+			<textField>
+				<reportElement x="373" y="1" width="100" height="20" uuid="bc2c6424-6db1-40bc-9090-b25cfc6e9888"/>
+				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="1" width="100" height="20" uuid="16999a92-99ca-4d11-9a35-7c98957aad2a"/>
+				<textFieldExpression><![CDATA[""+$F{materiel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="1" width="100" height="20" uuid="e4a21ecc-950b-4b8b-b2de-20507cc8520e"/>
+				<textFieldExpression><![CDATA[$F{peremtion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="e2b4e893-2135-43cf-9f44-7e88b54c513e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="2e13950c-28dd-4941-8008-0422441b6482"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="405f9dda-8afb-4ce8-acfe-78a4992612f5"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
